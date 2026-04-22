@@ -1,0 +1,20 @@
+# Claude Code private files
+.claude/CLAUDE.local.md
+.claude/settings.local.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+*.suo
+*.user
+
+# Logs
+*.log
+
+# Temp
+*.tmp
+*.temp

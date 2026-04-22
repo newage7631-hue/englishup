@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Chương trình học tiếng Anh giao tiếp 9 tháng — từ B1 lên B2+ tự tin chuyên nghiệp." />
+  <title>Chương Trình 9 Tháng — EnglishUp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <style>
+    /* ── Page-specific styles ── */
+    .course-hero {
+      padding-top: calc(var(--nav-height) + 72px);
+      padding-bottom: 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse, rgba(124,58,237,.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .course-hero .breadcrumb {
+      display: flex; align-items: center; gap: var(--sp-2);
+      font-size: var(--text-sm); color: var(--text-muted);
+      margin-bottom: var(--sp-6);
+    }
+    .course-hero .breadcrumb a { color: var(--accent-light); }
+    .course-hero .breadcrumb span { color: var(--text-muted); }
+
+    .course-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-4);
+      margin-top: var(--sp-10);
+    }
+    .course-meta-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-4) var(--sp-5);
+    }
+    .course-meta-label {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: var(--sp-1);
+    }
+    .course-meta-value {
+      font-size: var(--text-base);
+      font-weight: var(--fw-semibold);
+      color: var(--text-primary);
+    }
+
+    /* ── Phase Timeline ── */
+    .timeline-section { background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .phase-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+
+    .phase-item {
+      background: var(--bg-card);
+      padding: var(--sp-6) var(--sp-8);
+      display: grid;
+      grid-template-columns: 220px 1fr auto;
+      gap: var(--sp-8);
+      align-items: start;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .phase-item:hover { background: rgba(124,58,237,.04); }
+    .phase-item.is-open { background: rgba(124,58,237,.06); }
+
+    .phase-left {}
+    .phase-number {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-semibold);
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: var(--sp-2);
+    }
+    .phase-title { font-size: var(--text-lg); font-weight: var(--fw-bold); margin-bottom: var(--sp-2); }
+    .phase-duration {
+      display: inline-flex; align-items: center; gap: var(--sp-1);
+      font-size: var(--text-xs); color: var(--text-muted);
+    }
+
+    .phase-center {}
+    .phase-desc { font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.65; margin-bottom: var(--sp-3); }
+    .phase-skills { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+    .skill-chip {
+      padding: 3px 10px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
+    }
+
+    .phase-right {
+      text-align: right;
+      display: flex; flex-direction: column; align-items: flex-end; gap: var(--sp-2);
+    }
+    .phase-level {
+      font-size: var(--text-xs); font-weight: var(--fw-semibold);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+    }
+    .level-b1   { background: rgba(16,185,129,.1);  color: #10b981; border: 1px solid rgba(16,185,129,.2); }
+    .level-b1p  { background: rgba(59,130,246,.1);  color: #60a5fa; border: 1px solid rgba(59,130,246,.2); }
+    .level-b2   { background: rgba(245,158,11,.1);  color: #fbbf24; border: 1px solid rgba(245,158,11,.2); }
+    .level-b2p  { background: rgba(124,58,237,.12); color: var(--accent-light); border: 1px solid rgba(124,58,237,.3); }
+
+    .phase-toggle {
+      width: 28px; height: 28px;
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    .phase-item.is-open .phase-toggle { background: rgba(124,58,237,.15); border-color: rgba(124,58,237,.3); color: var(--accent-light); transform: rotate(45deg); }
+
+    /* Phase detail panel */
+    .phase-detail {
+      display: none;
+      background: rgba(124,58,237,.03);
+      border-top: 1px solid var(--border);
+      padding: var(--sp-8);
+      grid-column: 1 / -1;
+    }
+    .phase-item.is-open .phase-detail { display: block; }
+
+    .month-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6); }
+    .month-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+    }
+    .month-header {
+      display: flex; align-items: center; gap: var(--sp-3);
+      margin-bottom: var(--sp-5);
+      padding-bottom: var(--sp-4);
+      border-bottom: 1px solid var(--border);
+    }
+    .month-num {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: var(--text-xs); font-weight: var(--fw-bold); color: #fff;
+      flex-shrink: 0;
+    }
+    .month-title { font-size: var(--text-base); font-weight: var(--fw-semibold); }
+
+    .week-list { display: flex; flex-direction: column; gap: var(--sp-4); }
+    .week-item {}
+    .week-label {
+      font-size: var(--text-xs); font-weight: var(--fw-semibold);
+      color: var(--accent-light); text-transform: uppercase; letter-spacing: .06em;
+      margin-bottom: var(--sp-2);
+    }
+    .week-topics { display: flex; flex-direction: column; gap: var(--sp-2); }
+    .week-topic {
+      display: flex; align-items: flex-start; gap: var(--sp-2);
+      font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.5;
+    }
+    .week-topic::before { content: '–'; color: var(--text-muted); flex-shrink: 0; margin-top: 1px; }
+
+    .resource-tag {
+      display: inline-flex; align-items: center; gap: var(--sp-1);
+      padding: 2px 8px;
+      background: rgba(124,58,237,.08);
+      border: 1px solid rgba(124,58,237,.15);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      color: var(--accent-light);
+      margin-top: var(--sp-1);
+    }
+
+    .milestone-box {
+      margin-top: var(--sp-6);
+      padding: var(--sp-5);
+      background: rgba(16,185,129,.05);
+      border: 1px solid rgba(16,185,129,.15);
+      border-radius: var(--radius-md);
+    }
+    .milestone-box-title {
+      font-size: var(--text-sm); font-weight: var(--fw-semibold);
+      color: #10b981; margin-bottom: var(--sp-3);
+      display: flex; align-items: center; gap: var(--sp-2);
+    }
+    .milestone-list { display: flex; flex-direction: column; gap: var(--sp-2); }
+    .milestone-item {
+      display: flex; align-items: flex-start; gap: var(--sp-2);
+      font-size: var(--text-sm); color: var(--text-secondary);
+    }
+    .milestone-item::before { content: '✓'; color: #10b981; font-weight: var(--fw-bold); flex-shrink: 0; }
+
+    /* ── Resources table ── */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-6);
+    }
+    .resource-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      transition: var(--transition);
+    }
+    .resource-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .resource-card-header { display: flex; align-items: flex-start; gap: var(--sp-4); margin-bottom: var(--sp-4); }
+    .resource-icon { font-size: 24px; flex-shrink: 0; }
+    .resource-card h4 { font-size: var(--text-base); font-weight: var(--fw-semibold); }
+    .resource-card p { font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--sp-1); }
+    .resource-phases { display: flex; gap: var(--sp-2); flex-wrap: wrap; margin-top: var(--sp-3); }
+    .resource-phase-tag {
+      padding: 2px 8px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs); color: var(--text-muted);
+    }
+
+    /* ── Weekly schedule ── */
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .schedule-day {
+      background: var(--bg-card);
+      padding: var(--sp-5) var(--sp-4);
+      text-align: center;
+    }
+    .schedule-day-name {
+      font-size: var(--text-xs); font-weight: var(--fw-semibold);
+      color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em;
+      margin-bottom: var(--sp-3);
+    }
+    .schedule-activity {
+      font-size: var(--text-xs); color: var(--text-secondary);
+      line-height: 1.5; margin-bottom: var(--sp-2);
+    }
+    .schedule-time {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 2px 8px;
+      background: rgba(124,58,237,.1);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs); color: var(--accent-light);
+      font-weight: var(--fw-semibold);
+    }
+
+    /* ── Outcome table ── */
+    .outcome-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .outcome-table th {
+      background: var(--bg-card);
+      padding: var(--sp-4) var(--sp-6);
+      text-align: left;
+      font-size: var(--text-sm); font-weight: var(--fw-semibold);
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+    .outcome-table td {
+      padding: var(--sp-4) var(--sp-6);
+      font-size: var(--text-sm); color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+    .outcome-table tr:last-child td { border-bottom: none; }
+    .outcome-table tr:hover td { background: rgba(124,58,237,.03); }
+    .outcome-table td:first-child { font-weight: var(--fw-semibold); color: var(--text-primary); }
+    .outcome-before { color: var(--text-muted) !important; }
+    .outcome-after { color: #10b981 !important; }
+
+    @media (max-width: 1024px) {
+      .phase-item { grid-template-columns: 1fr; }
+      .phase-right { flex-direction: row; align-items: center; }
+      .month-grid { grid-template-columns: 1fr; }
+      .resources-grid { grid-template-columns: 1fr; }
+      .schedule-grid { grid-template-columns: repeat(4, 1fr); }
+      .course-meta-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .schedule-grid { grid-template-columns: 1fr 1fr; }
+      .phase-item { padding: var(--sp-5); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__logo">
+      <div class="nav__logo-icon">E</div>
+      EnglishUp
+    </a>
+    <ul class="nav__links">
+      <li><a href="index.html#lo-trinh" class="nav__link">Lộ trình</a></li>
+      <li><a href="index.html#khoa-hoc" class="nav__link">Khóa học</a></li>
+      <li><a href="index.html#cach-hoc" class="nav__link">Cách học</a></li>
+      <li><a href="index.html#hoc-phi" class="nav__link">Học phí</a></li>
+    </ul>
+    <div class="nav__actions">
+      <a href="index.html#hoc-phi" class="btn btn-primary">Đăng ký học</a>
+    </div>
+    <button class="nav__hamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav__mobile">
+  <a href="index.html#lo-trinh" class="nav__link">Lộ trình</a>
+  <a href="index.html#khoa-hoc" class="nav__link">Khóa học</a>
+  <a href="index.html#hoc-phi" class="nav__link">Học phí</a>
+  <a href="index.html#hoc-phi" class="btn btn-primary">Đăng ký học</a>
+</div>
+
+
+<!-- HERO -->
+<section class="course-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">EnglishUp</a>
+      <span>›</span>
+      <span>Workplace English</span>
+    </nav>
+
+    <div class="section-label">Chương trình đầy đủ</div>
+    <h1 style="max-width:760px; margin-bottom: var(--sp-5);">
+      Từ Giao Tiếp Cơ Bản<br/>
+      Đến <span class="gradient-text">Tự Tin Chuyên Nghiệp</span>
+    </h1>
+    <p style="max-width:560px; font-size: var(--text-lg); margin-bottom: var(--sp-8);">
+      Lộ trình 9 tháng có cấu trúc rõ ràng — từng tuần, từng tháng, từng giai đoạn. Dựa trên tài liệu được kiểm chứng, phù hợp cho người có nền tảng B1 muốn đạt B2+ giao tiếp chuyên nghiệp.
+    </p>
+    <div style="display:flex; gap: var(--sp-4); flex-wrap:wrap;">
+      <a href="#lo-trinh-chi-tiet" class="btn btn-primary btn-lg">Xem lộ trình chi tiết ↓</a>
+      <a href="index.html#hoc-phi" class="btn btn-secondary btn-lg">Đăng ký ngay</a>
+    </div>
+
+    <div class="course-meta-grid">
+      <div class="course-meta-card">
+        <div class="course-meta-label">Thời lượng</div>
+        <div class="course-meta-value">9 tháng</div>
+      </div>
+      <div class="course-meta-card">
+        <div class="course-meta-label">Thời gian/ngày</div>
+        <div class="course-meta-value">45–60 phút</div>
+      </div>
+      <div class="course-meta-card">
+        <div class="course-meta-label">Trình độ đầu vào</div>
+        <div class="course-meta-value">B1 (Trung cấp)</div>
+      </div>
+      <div class="course-meta-card">
+        <div class="course-meta-label">Mục tiêu</div>
+        <div class="course-meta-value">B2+ Chuyên nghiệp</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PHASE TIMELINE -->
+<section class="timeline-section" id="lo-trinh-chi-tiet">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <div class="section-label">5 Giai Đoạn</div>
+      <h2>Lộ trình học từng bước</h2>
+      <p>Mỗi giai đoạn xây dựng trực tiếp lên giai đoạn trước — không học nhảy cóc, không bỏ trống kỹ năng nào.</p>
+    </div>
+
+    <div class="phase-list" data-animate>
+
+      <!-- Phase 1 -->
+      <div class="phase-item" onclick="togglePhase(this)">
+        <div class="phase-left">
+          <div class="phase-number">Giai đoạn 1</div>
+          <div class="phase-title">Củng Cố Nền Tảng</div>
+          <div class="phase-duration">🕐 Tháng 1–2 (8 tuần)</div>
+        </div>
+        <div class="phase-center">
+          <p class="phase-desc">Phát âm chuẩn, ngữ pháp vững, từ vựng thiết yếu — không có nền tảng tốt, mọi thứ khác đều không bền.</p>
+          <div class="phase-skills">
+            <span class="skill-chip">Pronunciation</span>
+            <span class="skill-chip">Grammar</span>
+            <span class="skill-chip">Vocabulary 700+ từ</span>
+            <span class="skill-chip">IPA & Word Stress</span>
+          </div>
+        </div>
+        <div class="phase-right">
+          <span class="phase-level level-b1">B1</span>
+          <div class="phase-toggle">+</div>
+        </div>
+
+        <div class="phase-detail">
+          <div class="month-grid">
+            <div class="month-card">
+              <div class="month-header">
+                <div class="month-num">1</div>
+                <div class="month-title">Tháng 1 — Phát Âm & Ngữ Pháp</div>
+              </div>
+              <div class="week-list">
+                <div class="week-item">
+                  <div class="week-label">Tuần 1–2: Phát Âm</div>
+                  <div class="week-topics">
+                    <div class="week-topic">44 âm vị tiếng Anh (vowels, consonants, diphthongs)</div>
+                    <div class="week-topic">Word stress & sentence stress</div>
+                    <div class="week-topic">Intonation cơ bản (rising/falling)</div>
+                    <div class="week-topic">Weak forms & connected speech</div>
+                    <div class="week-topic">Shadowing 15 phút/ngày với native audio</div>
+                  </div>
+                  <div class="resource-tag">📘 English Pronunciation in Use (Cambridge)</div>
+                </div>
+                <div class="week-item">
+                  <div class="week-label">Tuần 3–4: Ngữ Pháp Giao Tiếp</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Present Simple vs Continuous (Unit 1–4)</div>
+                    <div class="week-topic">Past Simple vs Present Perfect (Unit 5–10)</div>
+                    <div class="week-topic">Modal verbs: can/could/would/should (Unit 25–30)</div>
+                    <div class="week-topic">Conditionals 1 & 2 (Unit 38–40)</div>
+                    <div class="week-topic">Reported speech cơ bản (Unit 47–48)</div>
+                  </div>
+                  <div class="resource-tag">📗 English Grammar in Use — Intermediate (Murphy)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="month-card">
+              <div class="month-header">
+                <div class="month-num">2</div>
+                <div class="month-title">Tháng 2 — Từ Vựng Theo Chủ Đề</div>
+              </div>
+              <div class="week-list">
+                <div class="week-item">
+                  <div class="week-label">Tuần 5–6: Nhóm 1 — Bản Thân & Cuộc Sống</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Work & Career — 100 từ (nghề nghiệp, kỹ năng)</div>
+                    <div class="week-topic">Education & Learning — 80 từ</div>
+                    <div class="week-topic">Health & Lifestyle — 80 từ</div>
+                    <div class="week-topic">Technology — 80 từ</div>
+                    <div class="week-topic">Anki flashcards: 20 từ/ngày + spaced repetition</div>
+                  </div>
+                  <div class="resource-tag">📙 Collins Vocabulary for IELTS (Unit 1–10)</div>
+                </div>
+                <div class="week-item">
+                  <div class="week-label">Tuần 7–8: Nhóm 2 — Thế Giới & Xã Hội</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Environment & Economy — 180 từ</div>
+                    <div class="week-topic">Communication & Media — 70 từ</div>
+                    <div class="week-topic">Science & Innovation — 80 từ</div>
+                    <div class="week-topic">Collocations: make a decision, reach a goal…</div>
+                    <div class="week-topic">Bài tập: dùng từ mới trong câu chuyện 2–3 phút</div>
+                  </div>
+                  <div class="resource-tag">📙 Barron Essential Words for IELTS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="milestone-box">
+            <div class="milestone-box-title">🎯 Milestone Giai Đoạn 1</div>
+            <div class="milestone-list">
+              <div class="milestone-item">Nói về bản thân, công việc, sở thích trong 3 phút không bị "á ờ" dừng</div>
+              <div class="milestone-item">Đọc email công việc đơn giản và hiểu được 85%+</div>
+              <div class="milestone-item">Phát âm đúng stress 80%+ từ vựng đã học</div>
+              <div class="milestone-item">Không lẫn lộn past simple / present perfect khi nói</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase-item" onclick="togglePhase(this)">
+        <div class="phase-left">
+          <div class="phase-number">Giai đoạn 2</div>
+          <div class="phase-title">Giao Tiếp Hàng Ngày</div>
+          <div class="phase-duration">🕐 Tháng 3–4 (8 tuần)</div>
+        </div>
+        <div class="phase-center">
+          <p class="phase-desc">Nghe hiểu thực tế, hội thoại tự nhiên, kể chuyện có cấu trúc — thoát khỏi giao tiếp một chiều.</p>
+          <div class="phase-skills">
+            <span class="skill-chip">Listening</span>
+            <span class="skill-chip">Speaking — Daily</span>
+            <span class="skill-chip">Storytelling</span>
+            <span class="skill-chip">Expressing Opinions</span>
+          </div>
+        </div>
+        <div class="phase-right">
+          <span class="phase-level level-b1p">B1+</span>
+          <div class="phase-toggle">+</div>
+        </div>
+
+        <div class="phase-detail">
+          <div class="month-grid">
+            <div class="month-card">
+              <div class="month-header">
+                <div class="month-num">3</div>
+                <div class="month-title">Tháng 3 — Listening & Hội Thoại Cơ Bản</div>
+              </div>
+              <div class="week-list">
+                <div class="week-item">
+                  <div class="week-label">Tuần 9–10: Listening Thực Tế</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Nghe & điền từ (note completion)</div>
+                    <div class="week-topic">Nhận ra paraphrasing — cùng ý, khác từ</div>
+                    <div class="week-topic">Nghe hội thoại và tóm tắt bằng lời mình</div>
+                    <div class="week-topic">20 phút/ngày: BBC 6 Minute English + dictation</div>
+                  </div>
+                  <div class="resource-tag">🎧 BBC Learning English + VOA Special English</div>
+                </div>
+                <div class="week-item">
+                  <div class="week-label">Tuần 11–12: 50 Tình Huống Hội Thoại</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Tự giới thiệu chuyên nghiệp (1–2 phút)</div>
+                    <div class="week-topic">Small talk: thời tiết, cuối tuần, sở thích</div>
+                    <div class="week-topic">Đặt lịch, xác nhận meeting, hỏi clarification</div>
+                    <div class="week-topic">Fluency fillers: "Well…", "That's a good point…"</div>
+                    <div class="week-topic">Record giọng 3 phút/ngày, tự nghe lại nhận xét</div>
+                  </div>
+                  <div class="resource-tag">📕 Collins Speaking for IELTS (Unit 1–8)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="month-card">
+              <div class="month-header">
+                <div class="month-num">4</div>
+                <div class="month-title">Tháng 4 — Ý Kiến & Kể Chuyện</div>
+              </div>
+              <div class="week-list">
+                <div class="week-item">
+                  <div class="week-label">Tuần 13–14: Expressing Opinions</div>
+                  <div class="week-topics">
+                    <div class="week-topic">"I think / I believe / From my perspective…"</div>
+                    <div class="week-topic">Đồng ý/không đồng ý lịch sự: "That's fair, however…"</div>
+                    <div class="week-topic">Cấu trúc PEEL: Point → Explain → Example → Link</div>
+                    <div class="week-topic">Bài tập: 1 chủ đề/ngày, nói 2 phút theo PEEL</div>
+                  </div>
+                </div>
+                <div class="week-item">
+                  <div class="week-label">Tuần 15–16: Storytelling</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Cấu trúc: Setting → Problem → Action → Result → Lesson</div>
+                    <div class="week-topic">Linking: "At first… then… suddenly… eventually…"</div>
+                    <div class="week-topic">Kể dự án thành công, tình huống khó, người mentor</div>
+                    <div class="week-topic">100 idioms & phrasal verbs trong ngữ cảnh thực</div>
+                  </div>
+                  <div class="resource-tag">📗 Speak English Like an American</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="milestone-box">
+            <div class="milestone-box-title">🎯 Milestone Giai Đoạn 2</div>
+            <div class="milestone-list">
+              <div class="milestone-item">Nghe podcast 10 phút và tóm tắt được 75%+ nội dung</div>
+              <div class="milestone-item">Nói liên tục về 1 chủ đề quen thuộc trong 3–5 phút</div>
+              <div class="milestone-item">Duy trì cuộc trò chuyện 10 phút không bị tắc</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase-item" onclick="togglePhase(this)">
+        <div class="phase-left">
+          <div class="phase-number">Giai đoạn 3</div>
+          <div class="phase-title">Tiếng Anh Công Sở</div>
+          <div class="phase-duration">🕐 Tháng 5–6 (8 tuần)</div>
+        </div>
+        <div class="phase-center">
+          <p class="phase-desc">Email, họp hành, thuyết trình — những kỹ năng quyết định sự thăng tiến trong môi trường quốc tế.</p>
+          <div class="phase-skills">
+            <span class="skill-chip">Email Writing</span>
+            <span class="skill-chip">Meetings</span>
+            <span class="skill-chip">Presentations</span>
+            <span class="skill-chip">Business Vocabulary</span>
+          </div>
+        </div>
+        <div class="phase-right">
+          <span class="phase-level level-b2">B2</span>
+          <div class="phase-toggle">+</div>
+        </div>
+
+        <div class="phase-detail">
+          <div class="month-grid">
+            <div class="month-card">
+              <div class="month-header">
+                <div class="month-num">5</div>
+                <div class="month-title">Tháng 5 — Email & Written Communication</div>
+              </div>
+              <div class="week-list">
+                <div class="week-item">
+                  <div class="week-label">Tuần 17–18: 10 Loại Email Thực Tế</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Email giới thiệu (joining team), xin họp, báo cáo tiến độ</div>
+                    <div class="week-topic">Email từ chối lịch sự, follow-up, xin lỗi trễ deadline</div>
+                    <div class="week-topic">Email complaint / escalation có cấu trúc</div>
+                    <div class="week-topic">100 business email phrases chuyên nghiệp</div>
+                    <div class="week-topic">Checklist tự đánh giá: Clear / Polite / Concise</div>
+                  </div>
+                </div>
+                <div class="week-item">
+                  <div class="week-label">Tuần 19–20: Reports & Slack Communication</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Viết project update, weekly summary ngắn gọn</div>
+                    <div class="week-topic">Bullet points vs. paragraph — khi nào dùng cái nào</div>
+                    <div class="week-topic">Action items: rõ ràng ai làm gì, khi nào</div>
+                    <div class="week-topic">Slack/Teams: professional nhưng không quá formal</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="month-card">
+              <div class="month-header">
+                <div class="month-num">6</div>
+                <div class="month-title">Tháng 6 — Meetings & Presentations</div>
+              </div>
+              <div class="week-list">
+                <div class="week-item">
+                  <div class="week-label">Tuần 21–22: Kỹ Năng Họp</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Mở meeting: "Shall we get started? / Let's go through the agenda…"</div>
+                    <div class="week-topic">Clarify: "Could you clarify…? / Just to confirm…"</div>
+                    <div class="week-topic">Ngắt lời: "Sorry to interrupt, but… / If I may add…"</div>
+                    <div class="week-topic">Khi không nghe/hiểu: xử lý tự nhiên, không xấu hổ</div>
+                    <div class="week-topic">80 meeting phrases + role-play 3 tình huống/tuần</div>
+                  </div>
+                </div>
+                <div class="week-item">
+                  <div class="week-label">Tuần 23–24: Thuyết Trình</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Cấu trúc: Hook → Agenda → Body → Transitions → Closing</div>
+                    <div class="week-topic">Voice projection, pace, pausing for effect</div>
+                    <div class="week-topic">Q&A: "That's a great question. Let me think…"</div>
+                    <div class="week-topic">Bài tập: thuyết trình 5 phút mỗi tuần, record & review</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="milestone-box">
+            <div class="milestone-box-title">🎯 Milestone Giai Đoạn 3</div>
+            <div class="milestone-list">
+              <div class="milestone-item">Viết email chuyên nghiệp trong 10 phút, không cần Google dịch</div>
+              <div class="milestone-item">Tham gia meeting, hiểu 85%+ nội dung, nói được 3–4 lần</div>
+              <div class="milestone-item">Thuyết trình 5 phút về chủ đề quen thuộc không bị ngập ngừng nhiều</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="phase-item" onclick="togglePhase(this)">
+        <div class="phase-left">
+          <div class="phase-number">Giai đoạn 4</div>
+          <div class="phase-title">Lưu Loát & Tự Tin</div>
+          <div class="phase-duration">🕐 Tháng 7–8 (8 tuần)</div>
+        </div>
+        <div class="phase-center">
+          <p class="phase-desc">Shadowing, think in English, advanced grammar — nói không cần dịch trong đầu, cấu trúc phức tạp dùng tự nhiên.</p>
+          <div class="phase-skills">
+            <span class="skill-chip">Shadowing</span>
+            <span class="skill-chip">Think in English</span>
+            <span class="skill-chip">Advanced Grammar</span>
+            <span class="skill-chip">Idioms & Phrasal Verbs</span>
+          </div>
+        </div>
+        <div class="phase-right">
+          <span class="phase-level level-b2">B2</span>
+          <div class="phase-toggle">+</div>
+        </div>
+
+        <div class="phase-detail">
+          <div class="month-grid">
+            <div class="month-card">
+              <div class="month-header">
+                <div class="month-num">7</div>
+                <div class="month-title">Tháng 7 — Shadowing & Fluency</div>
+              </div>
+              <div class="week-list">
+                <div class="week-item">
+                  <div class="week-label">Tuần 25–26: Shadowing Protocol</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Nghe toàn bộ 1 lần → hiểu tổng thể</div>
+                    <div class="week-topic">Nghe từng câu → lặp lại y chang (cả intonation)</div>
+                    <div class="week-topic">Đọc theo script → chú ý connected speech</div>
+                    <div class="week-topic">Shadow không script → so sánh với bản gốc</div>
+                    <div class="week-topic">20 phút/ngày với TED Talks & Rachel's English</div>
+                  </div>
+                </div>
+                <div class="week-item">
+                  <div class="week-label">Tuần 27–28: Think in English</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Tự nói chuyện với bản thân bằng tiếng Anh</div>
+                    <div class="week-topic">Viết nhật ký 5 phút/ngày bằng tiếng Anh</div>
+                    <div class="week-topic">100 idioms thực dụng trong môi trường làm việc</div>
+                    <div class="week-topic">Phrasal verbs: bring up, follow up, wrap up, set up…</div>
+                  </div>
+                  <div class="resource-tag">📗 Speak English Like an American (Lesson 1–20)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="month-card">
+              <div class="month-header">
+                <div class="month-num">8</div>
+                <div class="month-title">Tháng 8 — Advanced Grammar & Vocabulary</div>
+              </div>
+              <div class="week-list">
+                <div class="week-item">
+                  <div class="week-label">Tuần 29–30: Ngữ Pháp Nâng Cao</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Conditional 3 & Mixed: "If I had known… I would have…"</div>
+                    <div class="week-topic">Inversions: "Not only did I… / Rarely have I…"</div>
+                    <div class="week-topic">Cleft sentences: "What I mean is… / It was X who…"</div>
+                    <div class="week-topic">Relative clauses (defining vs. non-defining)</div>
+                    <div class="week-topic">Mỗi cấu trúc → 5 câu thực tế liên quan công việc</div>
+                  </div>
+                </div>
+                <div class="week-item">
+                  <div class="week-label">Tuần 31–32: Professional Collocations</div>
+                  <div class="week-topics">
+                    <div class="week-topic">"Address a concern / tackle a challenge / drive growth"</div>
+                    <div class="week-topic">"Foster collaboration / leverage resources / align with goals"</div>
+                    <div class="week-topic">Synonyms & register: ask vs inquire, help vs facilitate</div>
+                    <div class="week-topic">Hedging: "It seems that… / Arguably… / This might suggest…"</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="milestone-box">
+            <div class="milestone-box-title">🎯 Milestone Giai Đoạn 4</div>
+            <div class="milestone-list">
+              <div class="milestone-item">Shadowing 2 phút video không bị lag quá 1–2 từ</div>
+              <div class="milestone-item">Nói 5 phút liên tục, tự nhiên, không dùng "ơ, á, em muốn nói là…"</div>
+              <div class="milestone-item">Viết nhật ký tiếng Anh 100 từ/ngày không cần tra từ điển nhiều</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 5 -->
+      <div class="phase-item" onclick="togglePhase(this)">
+        <div class="phase-left">
+          <div class="phase-number">Giai đoạn 5</div>
+          <div class="phase-title">Giao Tiếp Nâng Cao</div>
+          <div class="phase-duration">🕐 Tháng 9 (4 tuần)</div>
+        </div>
+        <div class="phase-center">
+          <p class="phase-desc">Tranh luận, phỏng vấn, public speaking — tỏa sáng trong mọi tình huống đòi hỏi cao.</p>
+          <div class="phase-skills">
+            <span class="skill-chip">Debating</span>
+            <span class="skill-chip">Job Interviews</span>
+            <span class="skill-chip">Public Speaking</span>
+            <span class="skill-chip">Networking</span>
+          </div>
+        </div>
+        <div class="phase-right">
+          <span class="phase-level level-b2p">B2+</span>
+          <div class="phase-toggle">+</div>
+        </div>
+
+        <div class="phase-detail">
+          <div class="month-grid">
+            <div class="month-card">
+              <div class="month-header">
+                <div class="month-num">9A</div>
+                <div class="month-title">Tuần 33–34: Debating</div>
+              </div>
+              <div class="week-list">
+                <div class="week-item">
+                  <div class="week-label">Lập Luận Có Cấu Trúc</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Claim → Reasoning → Evidence → Counterargument → Rebuttal</div>
+                    <div class="week-topic">"I'd like to challenge that… / While I see your point…"</div>
+                    <div class="week-topic">Chủ đề: Remote work, AI & jobs, Profit vs. Responsibility</div>
+                    <div class="week-topic">Phân tích cách người thật tranh luận qua BBC HARDtalk</div>
+                  </div>
+                  <div class="resource-tag">📺 BBC HARDtalk + TED Debate Talks</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="month-card">
+              <div class="month-header">
+                <div class="month-num">9B</div>
+                <div class="month-title">Tuần 35–36: Phỏng Vấn & Public Speaking</div>
+              </div>
+              <div class="week-list">
+                <div class="week-item">
+                  <div class="week-label">Job Interview — Phương Pháp STAR</div>
+                  <div class="week-topics">
+                    <div class="week-topic">"Tell me about yourself" — 2 phút có cấu trúc</div>
+                    <div class="week-topic">Strengths/Weaknesses, Conflict handling, 5-year plan</div>
+                    <div class="week-topic">Salary negotiation phrases lịch sự nhưng tự tin</div>
+                    <div class="week-topic">Câu hỏi ngược lại — thể hiện sự chuẩn bị kỹ</div>
+                  </div>
+                </div>
+                <div class="week-item">
+                  <div class="week-label">Public Speaking & Networking</div>
+                  <div class="week-topics">
+                    <div class="week-topic">Elevator pitch 60 giây: bản thân / dự án</div>
+                    <div class="week-topic">Impromptu speaking theo PREP: Point → Reason → Example → Point</div>
+                    <div class="week-topic">Networking: bắt đầu, duy trì, kết thúc conversation tự nhiên</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="milestone-box">
+            <div class="milestone-box-title">🏆 Milestone Cuối Khóa — B2+</div>
+            <div class="milestone-list">
+              <div class="milestone-item">Phỏng vấn 15 phút bằng tiếng Anh tự tin, không cần script trước</div>
+              <div class="milestone-item">Thuyết trình 10 phút về công việc thực tế và trả lời Q&A</div>
+              <div class="milestone-item">Tranh luận về 1 chủ đề xã hội trong 5 phút với người khác</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- WEEKLY SCHEDULE -->
+<section>
+  <div class="container">
+    <div class="section-header centered" data-animate>
+      <div class="section-label">Lịch học</div>
+      <h2>Template tuần học chuẩn</h2>
+      <p>5–5.5 giờ/tuần — chỉ 45 phút mỗi ngày. Đủ để tiến bộ rõ rệt sau 30 ngày.</p>
+    </div>
+
+    <div class="schedule-grid" data-animate>
+      <div class="schedule-day">
+        <div class="schedule-day-name">Thứ 2</div>
+        <div class="schedule-activity">Vocabulary mới (20 từ) + Anki review</div>
+        <div class="schedule-time">30 phút</div>
+      </div>
+      <div class="schedule-day">
+        <div class="schedule-day-name">Thứ 3</div>
+        <div class="schedule-activity">Grammar — đọc lý thuyết + làm bài tập</div>
+        <div class="schedule-time">45 phút</div>
+      </div>
+      <div class="schedule-day">
+        <div class="schedule-day-name">Thứ 4</div>
+        <div class="schedule-activity">Listening — nghe + dictation + tóm tắt</div>
+        <div class="schedule-time">45 phút</div>
+      </div>
+      <div class="schedule-day">
+        <div class="schedule-day-name">Thứ 5</div>
+        <div class="schedule-activity">Speaking — record 3 phút, tự đánh giá</div>
+        <div class="schedule-time">30 phút</div>
+      </div>
+      <div class="schedule-day">
+        <div class="schedule-day-name">Thứ 6</div>
+        <div class="schedule-activity">Reading / Email / Writing thực tế</div>
+        <div class="schedule-time">45 phút</div>
+      </div>
+      <div class="schedule-day">
+        <div class="schedule-day-name">Thứ 7</div>
+        <div class="schedule-activity">Shadowing + TED Talk hoặc Podcast</div>
+        <div class="schedule-time">45 phút</div>
+      </div>
+      <div class="schedule-day">
+        <div class="schedule-day-name">Chủ nhật</div>
+        <div class="schedule-activity">Ôn tuần + Anki + viết journal tiếng Anh</div>
+        <div class="schedule-time">30 phút</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- RESOURCES -->
+<section style="background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <div class="section-label">Tài liệu</div>
+      <h2>Tài liệu được dùng trong khóa học</h2>
+      <p>Chọn lọc kỹ — chỉ những gì thực sự hiệu quả cho người Việt học giao tiếp.</p>
+    </div>
+
+    <div class="resources-grid" data-animate>
+      <div class="resource-card">
+        <div class="resource-card-header">
+          <div class="resource-icon">📗</div>
+          <div>
+            <h4>English Grammar in Use — Intermediate</h4>
+            <p>Raymond Murphy (Cambridge) — Giáo trình ngữ pháp chuẩn nhất thế giới. Mỗi unit: lý thuyết 1 trang + bài tập 1 trang.</p>
+          </div>
+        </div>
+        <div class="resource-phases">
+          <span class="resource-phase-tag">GĐ 1 — Nền tảng</span>
+          <span class="resource-phase-tag">GĐ 4 — Nâng cao</span>
+        </div>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-card-header">
+          <div class="resource-icon">🔊</div>
+          <div>
+            <h4>English Pronunciation in Use</h4>
+            <p>Cambridge — 44 âm vị, word stress, intonation, connected speech. Có audio native speaker đi kèm từng bài.</p>
+          </div>
+        </div>
+        <div class="resource-phases">
+          <span class="resource-phase-tag">GĐ 1 — Phát âm</span>
+        </div>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-card-header">
+          <div class="resource-icon">📙</div>
+          <div>
+            <h4>Collins Vocabulary for IELTS</h4>
+            <p>20 units từ vựng theo chủ đề — work, health, environment, technology. Có bài tập và kiểm tra cuối mỗi unit.</p>
+          </div>
+        </div>
+        <div class="resource-phases">
+          <span class="resource-phase-tag">GĐ 1–2 — Từ vựng</span>
+        </div>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-card-header">
+          <div class="resource-icon">📙</div>
+          <div>
+            <h4>Barron Essential Words for IELTS</h4>
+            <p>Từ vựng theo ngữ cảnh thực tế — environment, technology, education, health. Có bài tập thematic.</p>
+          </div>
+        </div>
+        <div class="resource-phases">
+          <span class="resource-phase-tag">GĐ 1–2 — Từ vựng</span>
+        </div>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-card-header">
+          <div class="resource-icon">🎙️</div>
+          <div>
+            <h4>Collins Speaking for IELTS</h4>
+            <p>Từ vựng và expressions theo chủ đề, có audio demo. Chiến lược trả lời có cấu trúc rõ ràng.</p>
+          </div>
+        </div>
+        <div class="resource-phases">
+          <span class="resource-phase-tag">GĐ 2–3 — Speaking</span>
+        </div>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-card-header">
+          <div class="resource-icon">🇺🇸</div>
+          <div>
+            <h4>Speak English Like an American</h4>
+            <p>300 idioms và cụm từ thông dụng qua các hội thoại thực tế. Giúp nói tự nhiên như người bản ngữ.</p>
+          </div>
+        </div>
+        <div class="resource-phases">
+          <span class="resource-phase-tag">GĐ 2 — Hội thoại</span>
+          <span class="resource-phase-tag">GĐ 4 — Lưu loát</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Online resources -->
+    <div style="margin-top: var(--sp-10);" data-animate>
+      <h3 style="margin-bottom: var(--sp-6); font-size: var(--text-xl);">Nguồn tự học hàng ngày (miễn phí)</h3>
+      <div style="display: grid; grid-template-columns: repeat(4,1fr); gap: var(--sp-4);">
+        <div class="milestone-card" style="background: var(--bg-card);">
+          <div class="milestone-icon">📻</div>
+          <h4>BBC 6 Minute English</h4>
+          <p>Listening + vocabulary, phát âm rõ, có transcript. GĐ 2–5</p>
+        </div>
+        <div class="milestone-card" style="background: var(--bg-card);">
+          <div class="milestone-icon">🎤</div>
+          <h4>TED Talks</h4>
+          <p>Shadowing + speaking model, 8–15 phút, đa dạng chủ đề. GĐ 3–5</p>
+        </div>
+        <div class="milestone-card" style="background: var(--bg-card);">
+          <div class="milestone-icon">📱</div>
+          <h4>Anki App</h4>
+          <p>Spaced repetition cho từ vựng. Review tự động theo thuật toán. Xuyên suốt</p>
+        </div>
+        <div class="milestone-card" style="background: var(--bg-card);">
+          <div class="milestone-icon">🤖</div>
+          <h4>ELSA Speak</h4>
+          <p>AI chấm phát âm tức thì, phân tích từng âm cụ thể. GĐ 1–3</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- OUTCOME TABLE -->
+<section>
+  <div class="container">
+    <div class="section-header centered" data-animate>
+      <div class="section-label">Kết quả</div>
+      <h2>Bạn sẽ khác như thế nào sau 9 tháng</h2>
+      <p>Không phải kỳ vọng mơ hồ — đây là những thay đổi cụ thể, đo lường được.</p>
+    </div>
+
+    <div data-animate>
+      <table class="outcome-table">
+        <thead>
+          <tr>
+            <th>Kỹ năng</th>
+            <th>Trước khóa học</th>
+            <th>Sau 9 tháng</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Speaking</td>
+            <td class="outcome-before">Nói cơ bản, hay ngắc, ngại giao tiếp</td>
+            <td class="outcome-after">Nói tự tin, liên tục 5+ phút bất kỳ chủ đề</td>
+          </tr>
+          <tr>
+            <td>Listening</td>
+            <td class="outcome-before">Hiểu 50–60% podcast thực tế</td>
+            <td class="outcome-after">Hiểu 80%+ — meeting, podcast, TED Talks</td>
+          </tr>
+          <tr>
+            <td>Writing</td>
+            <td class="outcome-before">Email đơn giản, nhiều lỗi, vòng vo</td>
+            <td class="outcome-after">Email chuyên nghiệp, rõ ràng, đúng tone</td>
+          </tr>
+          <tr>
+            <td>Vocabulary</td>
+            <td class="outcome-before">~2,000 từ, hay quên, không dùng được</td>
+            <td class="outcome-after">3,500–4,000 từ, dùng đúng ngữ cảnh</td>
+          </tr>
+          <tr>
+            <td>Grammar</td>
+            <td class="outcome-before">Hay sai tense, modal, lẫn cấu trúc</td>
+            <td class="outcome-after">Dùng đúng, kể cả cấu trúc phức tạp</td>
+          </tr>
+          <tr>
+            <td>Confidence</td>
+            <td class="outcome-before">Ngại nói, sợ sai, không dám thử</td>
+            <td class="outcome-after">Tự tin trong họp, phỏng vấn, thuyết trình</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container" data-animate>
+    <div class="section-label" style="justify-content:center;">Bắt đầu lộ trình</div>
+    <h2>9 tháng. 45 phút/ngày.<br/><span class="gradient-text">Một sự nghiệp khác hẳn.</span></h2>
+    <p>Đừng để tiếng Anh tiếp tục là lý do bạn bỏ lỡ cơ hội. Bắt đầu ngay hôm nay.</p>
+    <div class="cta-actions">
+      <a href="index.html#hoc-phi" class="btn btn-primary btn-lg">
+        Đăng ký học ngay
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="index.html" class="btn btn-secondary btn-lg">Về trang chủ</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo" style="margin-bottom:.75rem; display:inline-flex;">
+          <div class="nav__logo-icon">E</div>EnglishUp
+        </a>
+        <p>Lộ trình tiếng Anh giao tiếp thực tế — giúp người Việt tự tin hơn trong sự nghiệp và cuộc sống.</p>
+      </div>
+      <div>
+        <div class="footer__col-title">Khóa học</div>
+        <ul class="footer__links">
+          <li><a href="#" class="footer__link">Foundation English</a></li>
+          <li><a href="#" class="footer__link">Everyday English</a></li>
+          <li><a href="course.html" class="footer__link">Workplace English</a></li>
+          <li><a href="#" class="footer__link">Fluency & Confidence</a></li>
+          <li><a href="#" class="footer__link">Advanced Communication</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Hỗ trợ</div>
+        <ul class="footer__links">
+          <li><a href="#" class="footer__link">Hướng dẫn học</a></li>
+          <li><a href="#" class="footer__link">FAQ</a></li>
+          <li><a href="#" class="footer__link">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Về chúng tôi</div>
+        <ul class="footer__links">
+          <li><a href="#" class="footer__link">Câu chuyện</a></li>
+          <li><a href="#" class="footer__link">Blog tiếng Anh</a></li>
+          <li><a href="#" class="footer__link">Điều khoản</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 EnglishUp. Được xây dựng bởi Hoàng Minh Trí.</p>
+      <p class="footer__copy">Tiếng Anh không chỉ là ngôn ngữ — đó là chiếc vé mở cửa sự nghiệp của bạn.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/animations.js"></script>
+<script src="js/nav.js"></script>
+<script>
+function togglePhase(el) {
+  const isOpen = el.classList.contains('is-open');
+  // Close all
+  document.querySelectorAll('.phase-item').forEach(p => p.classList.remove('is-open'));
+  // Open clicked if it was closed
+  if (!isOpen) el.classList.add('is-open');
+}
+</script>
+</body>
+</html>

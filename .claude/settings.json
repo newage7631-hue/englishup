@@ -1,0 +1,55 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(git:*)",
+      "WebFetch(domain:fonts.googleapis.com)",
+      "WebFetch(domain:fonts.gstatic.com)",
+      "WebFetch(domain:unpkg.com)",
+      "WebFetch(domain:cdnjs.cloudflare.com)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(del /f:*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -Command \"Add-Type -AssemblyName System.Windows.Forms; $n = New-Object System.Windows.Forms.NotifyIcon; $n.Icon = [System.Drawing.SystemIcons]::Information; $n.Visible = $true; $n.ShowBalloonTip(8000, 'EnglishUp Assistant', 'Claude need you', 'Info'); Start-Sleep -Seconds 2; $n.Dispose()\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo [EnglishUp] File da duoc cap nhat: %TOOL_INPUT_FILE_PATH%"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo [EnglishUp] Chuan bi chay lenh bash..."
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "PROJECT_NAME": "EnglishUp",
+    "DEFAULT_LANG": "vi"
+  }
+}

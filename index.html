@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EnglishUp — Lộ trình học tiếng Anh giao tiếp thực tế, giúp bạn tự tin trong công việc và mở rộng cơ hội nghề nghiệp." />
+  <title>EnglishUp — Tiếng Anh tự tin. Sự nghiệp rộng mở.</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Icons (Lucide via CDN) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════ -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="container nav__inner">
+
+    <!-- Logo -->
+    <a href="#" class="nav__logo" aria-label="EnglishUp — trang chủ">
+      <div class="nav__logo-icon" aria-hidden="true">E</div>
+      EnglishUp
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav__links" role="list">
+      <li><a href="#lo-trinh" class="nav__link">Lộ trình</a></li>
+      <li><a href="#khoa-hoc" class="nav__link">Khóa học</a></li>
+      <li><a href="#bai-giang" class="nav__link">Bài giảng</a></li>
+      <li><a href="#cach-hoc" class="nav__link">Cách học</a></li>
+      <li><a href="#hoc-vien" class="nav__link">Học viên</a></li>
+      <li><a href="#hoc-phi" class="nav__link">Học phí</a></li>
+    </ul>
+
+    <!-- Desktop CTA -->
+    <div class="nav__actions">
+      <a href="#hoc-phi" class="btn btn-ghost">Đăng nhập</a>
+      <a href="#hoc-phi" class="btn btn-primary">Bắt đầu học</a>
+    </div>
+
+    <!-- Hamburger -->
+    <button class="nav__hamburger" aria-label="Mở menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="nav__mobile" role="dialog" aria-label="Mobile navigation">
+  <a href="#lo-trinh" class="nav__link">Lộ trình</a>
+  <a href="#khoa-hoc" class="nav__link">Khóa học</a>
+  <a href="#bai-giang" class="nav__link">Bài giảng</a>
+  <a href="#cach-hoc" class="nav__link">Cách học</a>
+  <a href="#hoc-vien" class="nav__link">Học viên</a>
+  <a href="#hoc-phi" class="nav__link">Học phí</a>
+  <a href="#hoc-phi" class="btn btn-primary">Bắt đầu học →</a>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__content">
+
+      <div class="hero__badge" aria-label="Dành cho người Việt đang đi làm">
+        <span class="hero__badge-dot" aria-hidden="true"></span>
+        Thiết kế cho người Việt đang đi làm
+      </div>
+
+      <h1 class="hero__title">
+        Tiếng Anh tự tin.<br />
+        <span class="gradient-text">Sự nghiệp rộng mở.</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Lộ trình học giao tiếp tiếng Anh thực tế — từ cơ bản đến chuyên nghiệp.
+        Giúp bạn tự tin trong công việc, thăng tiến nhanh hơn và mở ra cơ hội mới.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#khoa-hoc" class="btn btn-primary btn-lg">
+          Xem lộ trình học
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#cach-hoc" class="btn btn-secondary btn-lg">Tìm hiểu thêm</a>
+      </div>
+
+      <p class="hero__note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Học thử miễn phí 7 ngày — không cần thẻ tín dụng
+      </p>
+
+    </div>
+
+    <!-- Hero stats -->
+    <div class="hero__stats">
+      <div>
+        <div class="hero__stat-value">2,400+</div>
+        <div class="hero__stat-label">Học viên đang học</div>
+      </div>
+      <div>
+        <div class="hero__stat-value">94%</div>
+        <div class="hero__stat-label">Hài lòng sau 3 tháng</div>
+      </div>
+      <div>
+        <div class="hero__stat-value">5 cấp độ</div>
+        <div class="hero__stat-label">Lộ trình rõ ràng</div>
+      </div>
+      <div>
+        <div class="hero__stat-value">4.9 ★</div>
+        <div class="hero__stat-label">Đánh giá trung bình</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     MILESTONES  (lo trinh thanh tuu)
+══════════════════════════════════════ -->
+<section class="milestones" id="lo-trinh">
+  <div class="container">
+
+    <div class="section-header centered" data-animate>
+      <div class="section-label">Thành tựu</div>
+      <h2>Những gì bạn sẽ đạt được</h2>
+      <p>Mỗi mốc là một bước tiến thực tế trong sự nghiệp — từ buổi phỏng vấn đến sân khấu quốc tế.</p>
+    </div>
+
+    <div class="milestone-grid">
+
+      <div class="milestone-card" data-animate data-animate-delay="1">
+        <div class="milestone-icon" aria-hidden="true">👋</div>
+        <h4>Tự tin chào hỏi & giới thiệu bản thân</h4>
+        <p>Giao tiếp tự nhiên trong những tình huống hàng ngày và môi trường làm việc.</p>
+      </div>
+
+      <div class="milestone-card" data-animate data-animate-delay="2">
+        <div class="milestone-icon" aria-hidden="true">💼</div>
+        <h4>Giao tiếp chuyên nghiệp nơi công sở</h4>
+        <p>Họp hành, email, Slack với đồng nghiệp và đối tác nước ngoài không còn là rào cản.</p>
+      </div>
+
+      <div class="milestone-card" data-animate data-animate-delay="3">
+        <div class="milestone-icon" aria-hidden="true">🎤</div>
+        <h4>Thuyết trình bằng tiếng Anh</h4>
+        <p>Trình bày ý tưởng, dự án một cách rõ ràng và thuyết phục trước khán giả.</p>
+      </div>
+
+      <div class="milestone-card" data-animate data-animate-delay="4">
+        <div class="milestone-icon" aria-hidden="true">🌍</div>
+        <h4>Trò chuyện tự nhiên với người bản ngữ</h4>
+        <p>Tham gia cuộc trò chuyện về bất kỳ chủ đề nào mà không cần dịch trong đầu.</p>
+      </div>
+
+      <div class="milestone-card" data-animate data-animate-delay="1">
+        <div class="milestone-icon" aria-hidden="true">📈</div>
+        <h4>Thăng tiến và cơ hội nghề nghiệp mới</h4>
+        <p>Mở ra vị trí cao hơn, dự án quốc tế và công ty nước ngoài trong tầm tay.</p>
+      </div>
+
+      <div class="milestone-card" data-animate data-animate-delay="2">
+        <div class="milestone-icon" aria-hidden="true">🏆</div>
+        <h4>Tự tin tranh luận & thuyết phục</h4>
+        <p>Bảo vệ quan điểm, đàm phán hợp đồng và dẫn dắt cuộc thảo luận bằng tiếng Anh.</p>
+      </div>
+
+      <div class="milestone-card" data-animate data-animate-delay="3">
+        <div class="milestone-icon" aria-hidden="true">✍️</div>
+        <h4>Viết email & báo cáo chuyên nghiệp</h4>
+        <p>Email rõ ràng, súc tích và đúng tone phù hợp với môi trường doanh nghiệp quốc tế.</p>
+      </div>
+
+      <div class="milestone-card" data-animate data-animate-delay="4">
+        <div class="milestone-icon" aria-hidden="true">🎯</div>
+        <h4>Phỏng vấn & xin việc bằng tiếng Anh</h4>
+        <p>Gây ấn tượng mạnh trong vòng phỏng vấn với công ty trong nước và nước ngoài.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     COURSES
+══════════════════════════════════════ -->
+<section id="khoa-hoc">
+  <div class="container">
+
+    <div class="section-header" data-animate>
+      <div class="section-label">Khóa học</div>
+      <h2>Lộ trình 5 cấp độ từ cơ bản đến nâng cao</h2>
+      <p>Mỗi khóa học được thiết kế có chủ đích — không học lan man, chỉ học những gì thực sự cần cho công việc và cuộc sống.</p>
+    </div>
+
+    <div class="course-grid">
+
+      <!-- Course 1 -->
+      <div class="course-card" data-animate data-animate-delay="1">
+        <div class="flex flex-between">
+          <div class="course-badge badge-level-1">Cấp độ 1</div>
+        </div>
+        <div class="course-icon" aria-hidden="true">🔤</div>
+        <h3>Foundation English</h3>
+        <p>Xây dựng nền tảng vững chắc — phát âm chuẩn, ngữ pháp giao tiếp cốt lõi, từ vựng thiết yếu cho cuộc sống hàng ngày.</p>
+        <ul class="course-features">
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Phát âm IPA cơ bản
+          </li>
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            500 từ vựng thiết yếu
+          </li>
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Ngữ pháp giao tiếp cốt lõi
+          </li>
+        </ul>
+        <div class="course-footer">
+          <span class="course-duration">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            6 tuần • 36 bài học
+          </span>
+          <a href="#hoc-phi" class="course-link">
+            Xem khóa học
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Course 2 -->
+      <div class="course-card" data-animate data-animate-delay="2">
+        <div class="flex flex-between">
+          <div class="course-badge badge-level-2">Cấp độ 2</div>
+        </div>
+        <div class="course-icon" aria-hidden="true">💬</div>
+        <h3>Everyday English</h3>
+        <p>Hội thoại tự nhiên trong các tình huống thực tế — đặt hàng, hỏi đường, kết bạn, chia sẻ ý kiến cá nhân.</p>
+        <ul class="course-features">
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            50 tình huống giao tiếp thực tế
+          </li>
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Luyện nghe với giọng bản ngữ
+          </li>
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Idioms & cụm từ tự nhiên
+          </li>
+        </ul>
+        <div class="course-footer">
+          <span class="course-duration">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            8 tuần • 48 bài học
+          </span>
+          <a href="#hoc-phi" class="course-link">
+            Xem khóa học
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Course 3 — Featured -->
+      <div class="course-card course-card--featured" data-animate data-animate-delay="3" style="cursor:pointer;" onclick="window.location='course.html'">
+        <div class="flex flex-between">
+          <div class="course-badge badge-level-3">Cấp độ 3</div>
+          <div class="course-badge badge-popular">Phổ biến</div>
+        </div>
+        <div class="course-icon" aria-hidden="true">🏢</div>
+        <h3>Workplace English</h3>
+        <p>Email, họp hành, thuyết trình, networking — tất cả kỹ năng cần thiết để tỏa sáng trong môi trường làm việc quốc tế.</p>
+        <ul class="course-features">
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Email & báo cáo chuyên nghiệp
+          </li>
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Họp & thuyết trình hiệu quả
+          </li>
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Networking & small talk
+          </li>
+        </ul>
+        <div class="course-footer">
+          <span class="course-duration">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            10 tuần • 60 bài học
+          </span>
+          <a href="course.html" class="course-link">
+            Xem lộ trình chi tiết
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Course 4 -->
+      <div class="course-card" data-animate data-animate-delay="1">
+        <div class="flex flex-between">
+          <div class="course-badge badge-level-4">Cấp độ 4</div>
+        </div>
+        <div class="course-icon" aria-hidden="true">🚀</div>
+        <h3>Fluency & Confidence</h3>
+        <p>Nói tự nhiên, lưu loát như người bản ngữ — diễn đạt ý tưởng phức tạp, kể chuyện hấp dẫn và bày tỏ cảm xúc bằng tiếng Anh.</p>
+        <ul class="course-features">
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Nói liên tục không bị ngắt quãng
+          </li>
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Storytelling & diễn đạt cảm xúc
+          </li>
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Giảm phụ thuộc vào dịch thuật
+          </li>
+        </ul>
+        <div class="course-footer">
+          <span class="course-duration">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            12 tuần • 72 bài học
+          </span>
+          <a href="#hoc-phi" class="course-link">
+            Xem khóa học
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Course 5 -->
+      <div class="course-card" data-animate data-animate-delay="2">
+        <div class="flex flex-between">
+          <div class="course-badge badge-level-5">Cấp độ 5</div>
+        </div>
+        <div class="course-icon" aria-hidden="true">🎙️</div>
+        <h3>Advanced Communication</h3>
+        <p>Tranh luận, thuyết phục, public speaking — dành cho người muốn lãnh đạo, đàm phán và gây ấn tượng ở tầm quốc tế.</p>
+        <ul class="course-features">
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Debating & critical thinking
+          </li>
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Đàm phán & thuyết phục
+          </li>
+          <li class="course-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Public speaking & leadership
+          </li>
+        </ul>
+        <div class="course-footer">
+          <span class="course-duration">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            12 tuần • 80 bài học
+          </span>
+          <a href="#hoc-phi" class="course-link">
+            Xem khóa học
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════ -->
+<section id="cach-hoc" style="background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container">
+
+    <div class="section-header centered" data-animate>
+      <div class="section-label">Phương pháp</div>
+      <h2>Học đúng cách — không học lại từ đầu</h2>
+      <p>Phương pháp học được thiết kế cho người đi làm bận rộn, tập trung vào ứng dụng thực tế ngay từ buổi học đầu tiên.</p>
+    </div>
+
+    <div class="steps-grid">
+
+      <div class="step-card" data-animate data-animate-delay="1">
+        <div class="step-number" aria-label="Bước 1">1</div>
+        <h3>Đánh giá trình độ</h3>
+        <p>Kiểm tra nhanh 10 phút để xác định điểm mạnh, điểm yếu và cấp độ phù hợp. Không học lại những gì bạn đã biết.</p>
+      </div>
+
+      <div class="step-card" data-animate data-animate-delay="2">
+        <div class="step-number" aria-label="Bước 2">2</div>
+        <h3>Học theo lộ trình cá nhân</h3>
+        <p>Mỗi buổi học 30–45 phút, tập trung vào tình huống thực tế trong công việc và cuộc sống của bạn. Học đâu, học lúc nào cũng được.</p>
+      </div>
+
+      <div class="step-card" data-animate data-animate-delay="3">
+        <div class="step-number" aria-label="Bước 3">3</div>
+        <h3>Luyện tập & phản hồi tức thì</h3>
+        <p>Luyện nói với AI và gia sư thật, nhận phản hồi chi tiết về phát âm, ngữ pháp và cách diễn đạt ngay sau mỗi bài.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════ -->
+<section id="hoc-vien">
+  <div class="container">
+
+    <div class="section-header centered" data-animate>
+      <div class="section-label">Học viên</div>
+      <h2>Họ đã thay đổi như thế nào</h2>
+      <p>Những câu chuyện thật từ người học thật — không phải diễn viên, không phải kịch bản.</p>
+    </div>
+
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card" data-animate data-animate-delay="1">
+        <div class="testimonial-stars" aria-label="5 sao">★★★★★</div>
+        <p class="testimonial-quote">"Sau 3 tháng, tôi tự tin họp với đối tác Singapore mà không cần sếp 'giải cứu'. Cảm giác này thật sự khác biệt."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true">LH</div>
+          <div>
+            <div class="testimonial-name">Linh Hoàng</div>
+            <div class="testimonial-role">Marketing Manager, Hà Nội</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card" data-animate data-animate-delay="2">
+        <div class="testimonial-stars" aria-label="5 sao">★★★★★</div>
+        <p class="testimonial-quote">"Tôi đã từ chối 2 cơ hội thăng tiến vì ngại tiếng Anh. Sau khi học ở đây, tôi đã apply và được nhận vị trí Team Lead."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true">MT</div>
+          <div>
+            <div class="testimonial-name">Minh Tuấn</div>
+            <div class="testimonial-role">Software Engineer → Team Lead, TP.HCM</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card" data-animate data-animate-delay="3">
+        <div class="testimonial-stars" aria-label="5 sao">★★★★★</div>
+        <p class="testimonial-quote">"Khoá Workplace English giúp email của tôi chuyên nghiệp hơn hẳn. Sếp nước ngoài bắt đầu giao cho tôi những dự án quan trọng hơn."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true">TN</div>
+          <div>
+            <div class="testimonial-name">Thanh Nguyên</div>
+            <div class="testimonial-role">Project Coordinator, Đà Nẵng</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     PRICING
+══════════════════════════════════════ -->
+<section id="hoc-phi" style="background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container">
+
+    <div class="section-header centered" data-animate>
+      <div class="section-label">Học phí</div>
+      <h2>Đầu tư vào bản thân — không phải vào sách giáo khoa</h2>
+      <p>Học phí rõ ràng, không phí ẩn. Hoàn tiền trong 14 ngày nếu không hài lòng.</p>
+    </div>
+
+    <div class="pricing-grid" data-animate>
+
+      <!-- Basic -->
+      <div class="pricing-card">
+        <div>
+          <div class="pricing-name">Cơ bản</div>
+          <div class="pricing-price">
+            <span class="pricing-amount">599k</span>
+            <span class="pricing-period">/ tháng</span>
+          </div>
+        </div>
+        <p class="pricing-desc">Phù hợp cho người mới bắt đầu muốn học theo tốc độ riêng.</p>
+        <ul class="pricing-features">
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Truy cập toàn bộ khóa học cấp độ 1 & 2
+          </li>
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Luyện tập với AI
+          </li>
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Bài tập & flashcards
+          </li>
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Hỗ trợ qua email
+          </li>
+        </ul>
+        <a href="#" class="btn btn-secondary">Bắt đầu học thử</a>
+      </div>
+
+      <!-- Pro — featured -->
+      <div class="pricing-card pricing-card--featured">
+        <div>
+          <div class="pricing-name">Chuyên nghiệp</div>
+          <div class="pricing-price">
+            <span class="pricing-amount">1.2tr</span>
+            <span class="pricing-period">/ tháng</span>
+          </div>
+        </div>
+        <p class="pricing-desc">Dành cho người muốn tiến nhanh với lộ trình đầy đủ và hỗ trợ trực tiếp.</p>
+        <ul class="pricing-features">
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Truy cập toàn bộ 5 cấp độ
+          </li>
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            4 buổi luyện tập 1-1 với gia sư/tháng
+          </li>
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Phản hồi bài viết & phát âm chi tiết
+          </li>
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Cộng đồng học viên riêng
+          </li>
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Chứng chỉ hoàn thành khóa học
+          </li>
+        </ul>
+        <a href="#" class="btn btn-primary">Bắt đầu học →</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card">
+        <div>
+          <div class="pricing-name">Doanh nghiệp</div>
+          <div class="pricing-price">
+            <span class="pricing-amount">Liên hệ</span>
+          </div>
+        </div>
+        <p class="pricing-desc">Giải pháp đào tạo tiếng Anh cho đội nhóm và tổ chức từ 5 người trở lên.</p>
+        <ul class="pricing-features">
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Tất cả tính năng Pro
+          </li>
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Lộ trình tùy chỉnh theo ngành nghề
+          </li>
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Dashboard theo dõi tiến độ đội nhóm
+          </li>
+          <li class="pricing-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Account manager riêng
+          </li>
+        </ul>
+        <a href="#" class="btn btn-secondary">Liên hệ tư vấn</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     TEACHING SESSIONS
+══════════════════════════════════════ -->
+<section id="bai-giang">
+  <div class="container">
+
+    <div class="section-header centered" data-animate>
+      <div class="section-label">Tài liệu giảng dạy</div>
+      <h2>Bài giảng thực tế theo chủ đề</h2>
+      <p>Mỗi bài giảng được thiết kế hoàn chỉnh — giới thiệu, hướng dẫn từng bước, bảng từ vựng và bài kiểm tra cuối buổi.</p>
+    </div>
+
+    <div class="session-grid">
+
+      <!-- Session 1 -->
+      <article class="session-card" data-animate data-animate-delay="1">
+        <div class="session-card__header">
+          <span class="session-badge session-badge--workplace">Công sở</span>
+          <span class="session-meta">B1–B2 · 45–60 phút</span>
+        </div>
+        <div class="session-card__icon" aria-hidden="true">🤝</div>
+        <h3>Joining a Meeting in English</h3>
+        <p>Từ chào hỏi khi vào họp, theo dõi nội dung, đến chia sẻ ý kiến và kết thúc chuyên nghiệp — không còn ngại ngùng trong cuộc họp quốc tế.</p>
+        <ul class="session-topics">
+          <li>Check-in & mở đầu cuộc họp</li>
+          <li>Xác nhận & hỏi lại lịch sự</li>
+          <li>Đóng góp ý kiến tự tin</li>
+          <li>Wrap-up & tạm biệt</li>
+        </ul>
+        <div class="session-card__footer">
+          <span class="session-phrases">8 key phrases</span>
+          <span class="session-test">5 câu kiểm tra</span>
+        </div>
+      </article>
+
+      <!-- Session 2 -->
+      <article class="session-card" data-animate data-animate-delay="2">
+        <div class="session-card__header">
+          <span class="session-badge session-badge--media">Từ phim thực tế</span>
+          <span class="session-meta">B1–B2 · 45–60 phút</span>
+        </div>
+        <div class="session-card__icon" aria-hidden="true">🥋</div>
+        <h3>Surprise, Confidence & Reactions</h3>
+        <p>Học cách diễn đạt bất ngờ, thể hiện sự tự tin và khen ngợi người khác — qua cảnh phim hài hước từ Despicable Me 4.</p>
+        <ul class="session-topics">
+          <li>Diễn đạt sự bất ngờ tự nhiên</li>
+          <li>Thể hiện tự tin không kiêu ngạo</li>
+          <li>Khen ngợi có trọng lượng</li>
+          <li>Phản ứng kết quả ngoài mong đợi</li>
+        </ul>
+        <div class="session-card__footer">
+          <span class="session-phrases">7 key phrases</span>
+          <span class="session-test">5 câu kiểm tra</span>
+        </div>
+      </article>
+
+      <!-- Placeholder — more coming -->
+      <article class="session-card session-card--coming" data-animate data-animate-delay="3" aria-label="Bài giảng sắp ra mắt">
+        <div class="session-card__icon" aria-hidden="true">✍️</div>
+        <h3>Writing Professional Emails</h3>
+        <p>Cách viết email yêu cầu, xác nhận, và follow-up với đối tác nước ngoài — rõ ràng, lịch sự và đúng tone.</p>
+        <ul class="session-topics">
+          <li>Subject line hiệu quả</li>
+          <li>Mở và đóng email chuyên nghiệp</li>
+          <li>Polite requests & follow-up</li>
+          <li>50 business email phrases</li>
+        </ul>
+        <div class="session-card__footer session-coming-soon">
+          <span>Sắp ra mắt</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CTA SECTION  (evervault "Start building" style)
+══════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container" data-animate>
+    <div class="section-label" style="justify-content: center;">Bắt đầu ngay hôm nay</div>
+    <h2>
+      Tiếng Anh không phải rào cản.<br />
+      <span class="gradient-text">Đừng để nó trở thành giới hạn của bạn.</span>
+    </h2>
+    <p>Hàng nghìn người Việt đã thay đổi sự nghiệp nhờ giao tiếp tốt hơn. Bạn là người tiếp theo.</p>
+    <div class="cta-actions">
+      <a href="#" class="btn btn-primary btn-lg">
+        Bắt đầu học miễn phí
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#khoa-hoc" class="btn btn-secondary btn-lg">Xem lộ trình</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+
+      <!-- Brand -->
+      <div class="footer__brand">
+        <a href="#" class="nav__logo" style="margin-bottom: 0.75rem; display: inline-flex;">
+          <div class="nav__logo-icon" aria-hidden="true">E</div>
+          EnglishUp
+        </a>
+        <p>Lộ trình tiếng Anh giao tiếp thực tế — giúp người Việt tự tin hơn trong sự nghiệp và cuộc sống.</p>
+      </div>
+
+      <!-- Khóa học -->
+      <div>
+        <div class="footer__col-title">Khóa học</div>
+        <ul class="footer__links" role="list">
+          <li><a href="#" class="footer__link">Foundation English</a></li>
+          <li><a href="#" class="footer__link">Everyday English</a></li>
+          <li><a href="#" class="footer__link">Workplace English</a></li>
+          <li><a href="#" class="footer__link">Fluency & Confidence</a></li>
+          <li><a href="#" class="footer__link">Advanced Communication</a></li>
+        </ul>
+      </div>
+
+      <!-- Hỗ trợ -->
+      <div>
+        <div class="footer__col-title">Hỗ trợ</div>
+        <ul class="footer__links" role="list">
+          <li><a href="#" class="footer__link">Hướng dẫn học</a></li>
+          <li><a href="#" class="footer__link">Câu hỏi thường gặp</a></li>
+          <li><a href="#" class="footer__link">Liên hệ</a></li>
+          <li><a href="#" class="footer__link">Chính sách hoàn tiền</a></li>
+        </ul>
+      </div>
+
+      <!-- Về chúng tôi -->
+      <div>
+        <div class="footer__col-title">Về chúng tôi</div>
+        <ul class="footer__links" role="list">
+          <li><a href="#" class="footer__link">Câu chuyện</a></li>
+          <li><a href="#" class="footer__link">Đội ngũ giảng viên</a></li>
+          <li><a href="#" class="footer__link">Blog tiếng Anh</a></li>
+          <li><a href="#" class="footer__link">Điều khoản dịch vụ</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 EnglishUp. Được xây dựng bởi Hoàng Minh Trí.</p>
+      <p class="footer__copy">Tiếng Anh không chỉ là ngôn ngữ — đó là chiếc vé mở cửa cho sự nghiệp của bạn.</p>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- Scripts -->
+<script src="js/animations.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // Init Lucide icons if loaded
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+</script>
+
+</body>
+</html>

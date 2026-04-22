@@ -1,0 +1,82 @@
+:root {
+  /* Background */
+  --bg-primary: #0a0a0f;
+  --bg-surface: #111118;
+  --bg-card: #13131a;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(124, 58, 237, 0.45);
+
+  /* Accent — Violet/Purple */
+  --accent: #7c3aed;
+  --accent-mid: #9333ea;
+  --accent-light: #a855f7;
+  --accent-glow: rgba(124, 58, 237, 0.18);
+  --accent-glow-strong: rgba(124, 58, 237, 0.35);
+
+  /* Text */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+
+  /* Status */
+  --success: #10b981;
+  --success-glow: rgba(16, 185, 129, 0.2);
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Font sizes */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  3.75rem;
+
+  /* Font weights */
+  --fw-normal:   400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Spacing */
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.25rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+
+  /* Border radius */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-xl:   20px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition:      all 0.2s ease;
+  --transition-slow: all 0.45s ease;
+
+  /* Glows */
+  --glow-accent: 0 0 32px rgba(124, 58, 237, 0.2);
+  --glow-card:   0 0 20px rgba(124, 58, 237, 0.08);
+
+  /* Layout */
+  --max-width:  1200px;
+  --nav-height: 64px;
+  --section-py: 96px;
+}
