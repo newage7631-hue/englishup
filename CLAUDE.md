@@ -244,3 +244,94 @@ document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 - Hero section: khong dung IntersectionObserver — animate ngay khi load (`animation-delay`)
 - **Khong duoc de section nao khong co animation**
 - Khong dung thu vien nang (AOS, GSAP) tru khi duoc yeu cau — giu nhe, native
+
+---
+
+## Current State — April 2026
+
+### Lessons Published (5 bai giang)
+
+| # | File | Nguon | Ky nang day |
+|---|------|-------|-------------|
+| 1 | `lessons/joining-a-meeting.html` | Topic-based | Tham gia cuoc hop chuyen nghiep |
+| 2 | `lessons/surprise-confidence-reactions.html` | Despicable Me 4 | Surprise, tu tin & reactions |
+| 3 | `lessons/inside-out-2-anxiety.html` | Inside Out 2 | Self-introduction & self-correction |
+| 4 | `lessons/puss-boots-team-friendship.html` | Puss in Boots: The Last Wish | Khong dong y lich su |
+| 5 | `lessons/elemental-bad-news.html` | Elemental | Bao tin xau chuyen nghiep |
+
+### Components da xay dung
+
+- **Scene snapshot cards** — `.scene-frame` / `.scene-strip` / `.scene-snapshots`: cinematic 16:9 frames voi subtitle (tieng Anh) + speaker badge + timestamp + ban dich tieng Viet. Styles trong `css/lesson.css`.
+- **YouTube embed** — `.lesson-video__wrapper`: responsive 16:9 iframe (padding-bottom: 56.25% trick). Styles trong `css/lesson.css`.
+- **Lesson page template** — moi lesson co: YouTube embed → 4 scene frames → 4 steps → phrases table → 5-question test + answer key → wrap-up.
+
+### Skills & Agents
+
+- `.claude/skills/generate-teaching-session.md` — dual-mode: Topic Mode (chu de) hoac Video Mode (URL/canh phim). Video Mode tu dong sinh HTML embed + 4 scene-frame cards.
+- `.claude/agents/researcher.md` — research agent, max 500 words, co recommendation.
+
+### Deploy Pipeline
+
+- GitHub: `https://github.com/newage7631-hue/englishup.git` (branch: master)
+- Netlify: auto-deploy khi push len master, live trong ~60 giay
+
+---
+
+## Optimization & Enhancement Roadmap
+
+### HIGH PRIORITY — Anh huong truc tiep den trai nghiem hoc
+
+**1. Lesson Index Page (`lessons/index.html`)**
+- Van de: tat ca lesson cards nam tren trang chu → qua tai khi co 10+ lessons
+- Giai phap: trang rieng `/lessons/` voi grid + filter theo chu de (Cong so, Tu phim, Email...)
+- Trang chu giu 3 lessons noi bat + nut "Xem tat ca bai giang →"
+
+**2. Key Phrase Flashcard Mode**
+- Them nut "Luyen tu vung" sau moi lesson, mo popup flashcard
+- Flip card: mat truoc = tieng Anh, mat sau = nghia + vi du
+- Luu trang thai bang `localStorage`
+- Pure CSS flip animation — khong can library
+
+**3. Progress Tracking (localStorage)**
+- Danh dau lesson da hoc xong — badge "Hoan thanh" tren lesson card
+- Hien thi tren trang chu: "Ban da hoc 3/5 bai giang"
+- Reset duoc — khong can backend
+
+**4. Audio Pronunciation**
+- Nut speaker icon canh moi phrase trong bang tu vung
+- Dung Web Speech API built-in (mien phi, khong can API key)
+- `speechSynthesis.speak(new SpeechSynthesisUtterance(text))`
+
+---
+
+### MEDIUM PRIORITY — Nang cao chat luong noi dung
+
+**5. More Movie Lessons (Next Queue)**
+- Da research san: Spider-Man: Across the Spider-Verse (storytelling), Kung Fu Panda 4 (negotiation), Migration (concise explanation under pressure)
+- Dung skill `generate-teaching-session.md` Video Mode de tao nhanh
+- Muc tieu: them 1–2 lessons moi moi thang
+
+**6. Topic-Based Lesson Series**
+- De xuat tiep theo: "Writing Professional Emails", "Small Talk & Building Rapport", "Giving Presentations", "Handling Objections"
+- Dung skill Topic Mode de tao
+
+**7. Print / Export Lesson**
+- Nut "In bai giang" → `window.print()` voi `@media print` CSS
+- An nav, video, scene cards khi in; giu steps, phrases table, test
+- PDF tu browser la du — khong can Word export
+
+**8. Related Lessons Panel**
+- Cuoi moi lesson: hien thi 2–3 lessons lien quan
+- Hard-code HTML truoc, chuyen sang JSON data sau
+
+---
+
+### LOW PRIORITY — Long-term
+
+**9. SEO** — meta description day du, Open Graph tags, sitemap.xml
+
+**10. PWA Offline Access** — manifest.json + service worker cache CSS/JS/fonts
+
+**11. Lesson Search** — filter real-time tren trang lessons/index.html bang JS, khong can backend
+
+**12. Emoji Lesson Rating** — 3 reaction cuoi bai (👍 / 🤔 / 💡), luu localStorage, hien thi tren lesson cards
