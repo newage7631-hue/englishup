@@ -82,8 +82,13 @@ Use this when the user provides a video URL (YouTube or other) or describes a sp
 
 ### WHAT TO DO FIRST
 
+0. **Fetch the transcript first — mandatory before writing any dialogue.**
+   - Try WebFetch on `https://youtubetranscript.com/?server_vid2=[VIDEO_ID]`
+   - If that fails, try WebFetch on the YouTube page: `https://www.youtube.com/watch?v=[VIDEO_ID]` and extract any transcript/caption data present.
+   - If no transcript is retrievable from either source, **stop immediately and ask the user to paste the transcript or subtitle text** — do NOT proceed using memorised or inferred dialogue.
+
 1. If a YouTube URL is given: note the video ID (the part after `v=` or in short URLs after `/`). The embed URL will be `https://www.youtube.com/embed/[VIDEO_ID]`.
-2. Identify or infer the key dialogues and moments from the scene using your knowledge of the film/show, or from any content available at the URL.
+2. Using the **fetched transcript**, identify the 4 key moments with their exact verbatim dialogue lines.
 3. Select **4 key moments** from the scene that each teach a different communication skill or phrase.
 4. Map each moment to a lesson step.
 
@@ -125,7 +130,7 @@ Generate **exactly 4 scene-frame cards**, one per key moment. Each card must:
 - Have a unique cinematic background gradient (dark tones — use purple, green, amber, or blue hues mixed with `#0d0d0d`)
 - Show a timestamp (approximate, e.g. `0:08`, `0:31`)
 - Use a relevant emoji as the character visual icon
-- Show the exact English dialogue as the subtitle text (yellow-tinted, in quotes)
+- Show the **verbatim English dialogue from the transcript** as the subtitle text (yellow-tinted, in quotes) — no paraphrasing
 - Tag the speaker (character name or role)
 - Use `.scene-frame__speaker--green` class for the "protagonist / positive" speaker; default (violet) for others
 - Include a Vietnamese translation line
@@ -222,7 +227,7 @@ Adapt the 4 types to fit the actual dialogues from the video.
 5. Tone: encouraging, clear, professional — like a senior colleague coaching a junior
 6. Test questions must be answerable based ONLY on what was taught in the session
 7. Always include an Answer Key for the quick test
-8. For video mode: scene snapshot dialogue must be accurate to the actual video content, or clearly labelled as "inspired by" if inferred
+8. For video mode: ALL dialogue in scene snapshot cards and lesson steps MUST be verbatim quotes from the fetched transcript. No paraphrasing, no inferred dialogue, no "inspired by" labels. If a specific line is unclear in the transcript, omit it and choose a cleaner line instead. If no transcript was fetchable, do not generate the session — ask the user first.
 
 ---
 
