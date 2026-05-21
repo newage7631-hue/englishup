@@ -38,7 +38,7 @@
     <ul class="nav__links" role="list">
       <li><a href="#lo-trinh" class="nav__link">Lộ trình</a></li>
       <li><a href="#khoa-hoc" class="nav__link">Khóa học</a></li>
-      <li><a href="#bai-giang" class="nav__link">Bài giảng</a></li>
+      <li><a href="lessons/index.html" class="nav__link">Bài giảng</a></li>
       <li><a href="#cach-hoc" class="nav__link">Cách học</a></li>
       <li><a href="#hoc-vien" class="nav__link">Học viên</a></li>
       <li><a href="#hoc-phi" class="nav__link">Học phí</a></li>
@@ -64,7 +64,7 @@
 <div class="nav__mobile" role="dialog" aria-label="Mobile navigation">
   <a href="#lo-trinh" class="nav__link">Lộ trình</a>
   <a href="#khoa-hoc" class="nav__link">Khóa học</a>
-  <a href="#bai-giang" class="nav__link">Bài giảng</a>
+  <a href="lessons/index.html" class="nav__link">Bài giảng</a>
   <a href="#cach-hoc" class="nav__link">Cách học</a>
   <a href="#hoc-vien" class="nav__link">Học viên</a>
   <a href="#hoc-phi" class="nav__link">Học phí</a>
@@ -95,11 +95,11 @@
       </p>
 
       <div class="hero__actions">
-        <a href="#khoa-hoc" class="btn btn-primary btn-lg">
-          Xem lộ trình học
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#cach-hoc" class="btn btn-secondary btn-lg">Tìm hiểu thêm</a>
+        <button class="btn btn-primary btn-lg" onclick="openQuiz()">
+          Thiết lập lộ trình học
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: var(--sp-2);"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <a href="lessons/index.html" class="btn btn-secondary btn-lg">Thư viện bài giảng</a>
       </div>
 
       <p class="hero__note">
@@ -494,6 +494,18 @@
       <p>Học phí rõ ràng, không phí ẩn. Hoàn tiền trong 14 ngày nếu không hài lòng.</p>
     </div>
 
+    <!-- Pricing Toggle -->
+    <div class="pricing-toggle-container" style="display: flex; justify-content: center; align-items: center; gap: var(--sp-4); margin-bottom: var(--sp-10);" data-animate>
+      <span class="pricing-toggle-label" id="billing-monthly" style="font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--text-primary); transition: color 0.2s;">Thanh toán theo tháng</span>
+      <button class="pricing-toggle-btn" id="billing-toggle" aria-label="Toggle billing period" style="position: relative; width: 48px; height: 24px; border-radius: var(--radius-full); background: var(--accent); border: none; cursor: pointer; transition: background 0.2s;">
+        <span class="pricing-toggle-dot" style="position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: var(--radius-full); background: #fff; transition: transform 0.2s; will-change: transform;"></span>
+      </button>
+      <span class="pricing-toggle-label" id="billing-annually" style="font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--text-secondary); transition: color 0.2s;">
+        Thanh toán theo năm 
+        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: var(--success); font-size: 10px; padding: 2px 6px; border-radius: var(--radius-sm); margin-left: 4px;">Tiết kiệm 20%</span>
+      </span>
+    </div>
+
     <div class="pricing-grid" data-animate>
 
       <!-- Basic -->
@@ -501,8 +513,8 @@
         <div>
           <div class="pricing-name">Cơ bản</div>
           <div class="pricing-price">
-            <span class="pricing-amount">599k</span>
-            <span class="pricing-period">/ tháng</span>
+            <span class="pricing-amount" id="price-basic">599k</span>
+            <span class="pricing-period" id="period-basic">/ tháng</span>
           </div>
         </div>
         <p class="pricing-desc">Phù hợp cho người mới bắt đầu muốn học theo tốc độ riêng.</p>
@@ -524,7 +536,7 @@
             Hỗ trợ qua email
           </li>
         </ul>
-        <a href="#" class="btn btn-secondary">Bắt đầu học thử</a>
+        <button class="btn btn-secondary" style="width: 100%;" onclick="openQuiz()">Bắt đầu học thử</button>
       </div>
 
       <!-- Pro — featured -->
@@ -532,8 +544,8 @@
         <div>
           <div class="pricing-name">Chuyên nghiệp</div>
           <div class="pricing-price">
-            <span class="pricing-amount">1.2tr</span>
-            <span class="pricing-period">/ tháng</span>
+            <span class="pricing-amount" id="price-pro">1.2tr</span>
+            <span class="pricing-period" id="period-pro">/ tháng</span>
           </div>
         </div>
         <p class="pricing-desc">Dành cho người muốn tiến nhanh với lộ trình đầy đủ và hỗ trợ trực tiếp.</p>
@@ -559,7 +571,7 @@
             Chứng chỉ hoàn thành khóa học
           </li>
         </ul>
-        <a href="#" class="btn btn-primary">Bắt đầu học →</a>
+        <button class="btn btn-primary" style="width: 100%;" onclick="openQuiz()">Bắt đầu học →</button>
       </div>
 
       <!-- Enterprise -->
@@ -677,50 +689,15 @@
         </div>
       </article>
 
-      <!-- Session 4 — Puss in Boots -->
-      <article class="session-card" data-animate data-animate-delay="4" onclick="window.location='lessons/puss-boots-team-friendship.html'" style="cursor:pointer;">
-        <div class="session-card__header">
-          <span class="session-badge session-badge--media">Từ phim thực tế</span>
-          <span class="session-meta">B1–B2 · 45–60 phút</span>
-        </div>
-        <div class="session-card__icon" aria-hidden="true">🐾</div>
-        <h3>Disagreeing Diplomatically</h3>
-        <p>Nói không lịch sự, cho feedback thẳng thắn đúng cách, và giữ cánh cửa mở sau khi bị từ chối — qua Puss in Boots: The Last Wish.</p>
-        <ul class="session-topics">
-          <li>Đề xuất ý tưởng không áp đặt</li>
-          <li>"I'm not on board" — từ chối lịch sự</li>
-          <li>Feedback thẳng thắn nhưng chuyên nghiệp</li>
-          <li>"We're still workshopping it" — giữ cửa mở</li>
-        </ul>
-        <div class="session-card__footer">
-          <span class="session-phrases">7 key phrases</span>
-          <span class="session-test">5 câu kiểm tra</span>
-          <a href="lessons/puss-boots-team-friendship.html" class="session-cta">Vào học →</a>
-        </div>
-      </article>
 
-      <!-- Session 5 — Elemental -->
-      <article class="session-card" data-animate data-animate-delay="5" onclick="window.location='lessons/elemental-bad-news.html'" style="cursor:pointer;">
-        <div class="session-card__header">
-          <span class="session-badge session-badge--media">Từ phim thực tế</span>
-          <span class="session-meta">B1–B2 · 45–60 phút</span>
-        </div>
-        <div class="session-card__icon" aria-hidden="true">💧</div>
-        <h3>Delivering Bad News Professionally</h3>
-        <p>Học cách báo tin không tốt mà vẫn giữ được sự tin tưởng — chuẩn bị người nghe, đồng cảm, và chuyển sang giải pháp — qua phim Elemental.</p>
-        <ul class="session-topics">
-          <li>Báo hiệu trước — "I've got difficult news"</li>
-          <li>Trao quyền cho người nghe</li>
-          <li>Truyền đạt với sự đồng cảm</li>
-          <li>Xử lý phản ứng bình tĩnh</li>
-        </ul>
-        <div class="session-card__footer">
-          <span class="session-phrases">8 key phrases</span>
-          <span class="session-test">5 câu kiểm tra</span>
-          <a href="lessons/elemental-bad-news.html" class="session-cta">Vào học →</a>
-        </div>
-      </article>
 
+    </div>
+    
+    <div style="text-align: center; margin-top: var(--sp-10);" data-animate>
+      <a href="lessons/index.html" class="btn btn-primary btn-lg">
+        Khám phá Thư viện Bài giảng Tương tác
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: var(--sp-2);" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -738,11 +715,11 @@
     </h2>
     <p>Hàng nghìn người Việt đã thay đổi sự nghiệp nhờ giao tiếp tốt hơn. Bạn là người tiếp theo.</p>
     <div class="cta-actions">
-      <a href="#" class="btn btn-primary btn-lg">
+      <button class="btn btn-primary btn-lg" onclick="openQuiz()">
         Bắt đầu học miễn phí
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="#khoa-hoc" class="btn btn-secondary btn-lg">Xem lộ trình</a>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: var(--sp-2);"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <a href="lessons/index.html" class="btn btn-secondary btn-lg">Xem tất cả bài giảng</a>
     </div>
   </div>
 </section>
@@ -813,6 +790,7 @@
 <script src="js/animations.js"></script>
 <script src="js/nav.js"></script>
 <script src="js/main.js"></script>
+<script src="js/quiz.js"></script>
 <script>
   // Init Lucide icons if loaded
   if (typeof lucide !== 'undefined') lucide.createIcons();

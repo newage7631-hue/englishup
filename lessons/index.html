@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Thư viện bài giảng tương tác EnglishUp — Học tiếng Anh qua phim và các tình huống giao tiếp công sở thực tế." />
+  <title>Tất cả bài giảng tương tác — EnglishUp</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Icons (Lucide via CDN) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  
+  <style>
+    /* Custom page styles for lesson catalog */
+    .catalog-hero {
+      padding: var(--sp-16) 0 var(--sp-8);
+      background: radial-gradient(circle at top center, rgba(124, 58, 237, 0.08) 0%, transparent 60%);
+      text-align: center;
+      position: relative;
+    }
+
+    .catalog-hero h1 {
+      font-size: var(--text-4xl);
+      font-weight: var(--fw-bold);
+      margin-bottom: var(--sp-4);
+    }
+
+    .catalog-hero p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto var(--sp-8);
+      font-size: var(--text-base);
+    }
+
+    /* 📊 Progress Widget */
+    .progress-widget {
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-4) var(--sp-6);
+      box-shadow: var(--glow-card);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+    }
+
+    .progress-widget__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--text-sm);
+      font-weight: var(--fw-semibold);
+    }
+
+    .progress-widget__title {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      color: var(--text-primary);
+    }
+
+    .progress-widget__number {
+      color: var(--accent-light);
+    }
+
+    .progress-widget__bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-widget__bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+      width: 0%;
+      border-radius: var(--radius-full);
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+    }
+
+    /* 🔍 Search & Filters Bar */
+    .filter-bar {
+      margin-bottom: var(--sp-12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--sp-6);
+      flex-wrap: wrap;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: var(--sp-4) var(--sp-6);
+      border-radius: var(--radius-lg);
+    }
+
+    .search-wrapper {
+      position: relative;
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      padding: var(--sp-3) var(--sp-4) var(--sp-3) 42px;
+      color: var(--text-primary);
+      font-size: var(--text-sm);
+      border-radius: var(--radius-md);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+    }
+
+    .filter-tags {
+      display: flex;
+      gap: var(--sp-2);
+    }
+
+    .filter-tag {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-semibold);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-tag:hover {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text-primary);
+    }
+
+    .filter-tag.is-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    }
+
+    /* 🎴 Evervault Card Grid */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: var(--sp-6);
+      margin-bottom: var(--sp-20);
+    }
+
+    /* Evervault Glow card */
+    .lesson-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+      overflow: hidden;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Dynamic cursor glow */
+    .lesson-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(124, 58, 237, 0.12), transparent 40%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+    }
+
+    .lesson-card:hover::before {
+      opacity: 1;
+    }
+
+    .lesson-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .lesson-card__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .lesson-card__badges {
+      display: flex;
+      gap: var(--sp-2);
+      align-items: center;
+    }
+
+    .lesson-card__badge {
+      font-size: 10px;
+      font-weight: var(--fw-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+    }
+
+    .lesson-card__badge--workplace {
+      background: rgba(124, 58, 237, 0.15);
+      color: var(--accent-light);
+    }
+
+    .lesson-card__badge--media {
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+    }
+
+    .lesson-card__level {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      font-weight: var(--fw-semibold);
+    }
+
+    .lesson-card__title {
+      font-size: var(--text-lg);
+      font-weight: var(--fw-bold);
+      color: var(--text-primary);
+      margin: 0;
+      line-height: 1.4;
+      z-index: 2;
+    }
+
+    .lesson-card__goal {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
+      flex-grow: 1;
+      z-index: 2;
+    }
+
+    .lesson-card__source {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-1);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: var(--sp-3);
+      z-index: 2;
+    }
+
+    .lesson-card__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .lesson-card__completion {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-1);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-semibold);
+    }
+
+    .lesson-card__completion--done {
+      color: var(--success);
+    }
+
+    .lesson-card__completion--pending {
+      color: var(--text-muted);
+    }
+
+    .lesson-card__btn {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      color: var(--accent-light);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-1);
+      transition: gap 0.2s ease;
+    }
+
+    .lesson-card:hover .lesson-card__btn {
+      gap: var(--sp-2);
+    }
+
+    /* 🚫 Empty search result */
+    .empty-results {
+      text-align: center;
+      padding: var(--sp-12) 0;
+      color: var(--text-secondary);
+      display: none;
+      grid-column: 1 / -1;
+    }
+
+    .empty-results svg {
+      width: 48px;
+      height: 48px;
+      color: var(--text-muted);
+      margin-bottom: var(--sp-4);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="container nav__inner">
+    <a href="../index.html" class="nav__logo" aria-label="EnglishUp — trang chủ">
+      <div class="nav__logo-icon" aria-hidden="true">E</div>
+      EnglishUp
+    </a>
+    
+    <ul class="nav__links" role="list">
+      <li><a href="../index.html#lo-trinh" class="nav__link">Lộ trình</a></li>
+      <li><a href="../index.html#khoa-hoc" class="nav__link">Khóa học</a></li>
+      <li><a href="#" class="nav__link nav__link--active">Bài giảng</a></li>
+      <li><a href="../index.html#cach-hoc" class="nav__link">Cách học</a></li>
+      <li><a href="../index.html#hoc-vien" class="nav__link">Học viên</a></li>
+      <li><a href="../index.html#hoc-phi" class="nav__link">Học phí</a></li>
+    </ul>
+
+    <div class="nav__actions">
+      <a href="../index.html#hoc-phi" class="btn btn-ghost">Đăng nhập</a>
+      <a href="../index.html#hoc-phi" class="btn btn-primary">Bắt đầu học</a>
+    </div>
+
+    <button class="nav__hamburger" aria-label="Mở menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="nav__mobile" role="dialog" aria-label="Mobile navigation">
+  <a href="../index.html#lo-trinh" class="nav__link">Lộ trình</a>
+  <a href="../index.html#khoa-hoc" class="nav__link">Khóa học</a>
+  <a href="#" class="nav__link">Bài giảng</a>
+  <a href="../index.html#cach-hoc" class="nav__link">Cách học</a>
+  <a href="../index.html#hoc-vien" class="nav__link">Học viên</a>
+  <a href="../index.html#hoc-phi" class="nav__link">Học phí</a>
+  <a href="../index.html#hoc-phi" class="btn btn-primary">Bắt đầu học →</a>
+</div>
+
+<main style="padding-top: var(--nav-height);">
+
+  <!-- HERO SECTION -->
+  <section class="catalog-hero">
+    <div class="container">
+      <h1 data-animate>Thư Viện <span class="gradient-text">Bài Giảng Tương Tác</span></h1>
+      <p data-animate>Học tiếng Anh giao tiếp thực tế qua các tình huống tại công sở và trích đoạn phim nổi tiếng cùng To Trinh.</p>
+      
+      <!-- Progress Bar Tracker -->
+      <div class="progress-widget" data-animate>
+        <div class="progress-widget__header">
+          <span class="progress-widget__title">
+            <i data-lucide="award" style="width: 16px; height: 16px; color: var(--accent-light);"></i>
+            Tiến độ hoàn thành bài học
+          </span>
+          <span class="progress-widget__number"><span id="completed-count">0</span> / 5 bài</span>
+        </div>
+        <div class="progress-widget__bar-bg">
+          <div class="progress-widget__bar-fill" id="completed-bar"></div>
+        </div>
+      </div>
+      
+      <div style="margin-top: var(--sp-4);" data-animate>
+        <button class="btn btn-secondary btn-sm" onclick="openQuiz()">
+          <i data-lucide="help-circle" style="width: 14px; height: 14px; margin-right: var(--sp-1);"></i>
+          Chưa biết bắt đầu từ đâu? Làm bài test trình độ nhanh
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH & FILTER BAR -->
+  <section class="container" style="margin-top: var(--sp-10);">
+    <div class="filter-bar" data-animate>
+      <div class="search-wrapper">
+        <i data-lucide="search" class="search-icon"></i>
+        <input type="text" id="lesson-search" class="search-input" placeholder="Tìm kiếm bài giảng (ví dụ: họp, Anxiety, Bad news...)" />
+      </div>
+      
+      <div class="filter-tags" role="tablist">
+        <button class="filter-tag is-active" role="tab" aria-selected="true" data-filter="all">Tất cả bài học</button>
+        <button class="filter-tag" role="tab" aria-selected="false" data-filter="workplace">Công sở</button>
+        <button class="filter-tag" role="tab" aria-selected="false" data-filter="media">Từ phim</button>
+      </div>
+    </div>
+
+    <!-- CARDS GRID -->
+    <div class="catalog-grid" id="catalog-grid" data-animate>
+      
+      <!-- Lesson 1 -->
+      <a href="joining-a-meeting.html" class="lesson-card" data-category="workplace" data-id="joining-a-meeting">
+        <div class="lesson-card__meta">
+          <div class="lesson-card__badges">
+            <span class="lesson-card__badge lesson-card__badge--workplace">Công sở</span>
+          </div>
+          <span class="lesson-card__level">B1–B2 · 45-60'</span>
+        </div>
+        <h3 class="lesson-card__title">Joining a Meeting in English</h3>
+        <p class="lesson-card__goal">
+          <strong>Mục tiêu:</strong> Nhập cuộc họp tiếng Anh tự tin — từ chào hỏi, theo dõi nội dung, xin phát biểu, đến kết thúc họp một cách chuyên nghiệp.
+        </p>
+        <div class="lesson-card__source">
+          <i data-lucide="briefcase" style="width: 14px; height: 14px;"></i>
+          <span>Tình huống thực tế tại văn phòng</span>
+        </div>
+        <div class="lesson-card__footer">
+          <span class="lesson-card__completion lesson-card__completion--pending" data-completed-status>
+            <i data-lucide="circle" style="width: 14px; height: 14px;"></i> Chưa hoàn thành
+          </span>
+          <span class="lesson-card__btn">Vào học <i data-lucide="arrow-right" style="width: 12px; height: 12px;"></i></span>
+        </div>
+      </a>
+
+      <!-- Lesson 2 -->
+      <a href="inside-out-2-anxiety.html" class="lesson-card" data-category="media" data-id="inside-out-2-anxiety">
+        <div class="lesson-card__meta">
+          <div class="lesson-card__badges">
+            <span class="lesson-card__badge lesson-card__badge--media">Từ phim</span>
+          </div>
+          <span class="lesson-card__level">B1–B2 · 45-60'</span>
+        </div>
+        <h3 class="lesson-card__title">Self-Introduction & Self-Correction</h3>
+        <p class="lesson-card__goal">
+          <strong>Mục tiêu:</strong> Giới thiệu bản thân, tự sửa lỗi khéo léo khi vấp váp (Self-Correction) và điều tiết tone giọng — qua cảnh phim Inside Out 2.
+        </p>
+        <div class="lesson-card__source">
+          <i data-lucide="clapperboard" style="width: 14px; height: 14px;"></i>
+          <span>Inside Out 2 — "Hello, I'm Anxiety!"</span>
+        </div>
+        <div class="lesson-card__footer">
+          <span class="lesson-card__completion lesson-card__completion--pending" data-completed-status>
+            <i data-lucide="circle" style="width: 14px; height: 14px;"></i> Chưa hoàn thành
+          </span>
+          <span class="lesson-card__btn">Vào học <i data-lucide="arrow-right" style="width: 12px; height: 12px;"></i></span>
+        </div>
+      </a>
+
+      <!-- Lesson 3 -->
+      <a href="puss-boots-team-friendship.html" class="lesson-card" data-category="media" data-id="puss-boots-team-friendship">
+        <div class="lesson-card__meta">
+          <div class="lesson-card__badges">
+            <span class="lesson-card__badge lesson-card__badge--media">Từ phim</span>
+          </div>
+          <span class="lesson-card__level">B1–B2 · 45-60'</span>
+        </div>
+        <h3 class="lesson-card__title">Disagreeing Diplomatically</h3>
+        <p class="lesson-card__goal">
+          <strong>Mục tiêu:</strong> Đề xuất ý tưởng, từ chối / không đồng ý lịch sự và phục hồi tự tin sau khi bị bác bỏ ý tưởng — qua phim Puss in Boots: The Last Wish.
+        </p>
+        <div class="lesson-card__source">
+          <i data-lucide="clapperboard" style="width: 14px; height: 14px;"></i>
+          <span>Puss in Boots: The Last Wish — "Team Friendship"</span>
+        </div>
+        <div class="lesson-card__footer">
+          <span class="lesson-card__completion lesson-card__completion--pending" data-completed-status>
+            <i data-lucide="circle" style="width: 14px; height: 14px;"></i> Chưa hoàn thành
+          </span>
+          <span class="lesson-card__btn">Vào học <i data-lucide="arrow-right" style="width: 12px; height: 12px;"></i></span>
+        </div>
+      </a>
+
+      <!-- Lesson 4 -->
+      <a href="elemental-bad-news.html" class="lesson-card" data-category="media" data-id="elemental-bad-news">
+        <div class="lesson-card__meta">
+          <div class="lesson-card__badges">
+            <span class="lesson-card__badge lesson-card__badge--media">Từ phim</span>
+          </div>
+          <span class="lesson-card__level">B1–B2 · 45-60'</span>
+        </div>
+        <h3 class="lesson-card__title">Delivering Bad News Professionally</h3>
+        <p class="lesson-card__goal">
+          <strong>Mục tiêu:</strong> Báo tin xấu khéo léo trong công việc — chuẩn bị tâm lý người nghe, đồng cảm, và nhanh chóng đề xuất giải pháp — qua phim Elemental.
+        </p>
+        <div class="lesson-card__source">
+          <i data-lucide="clapperboard" style="width: 14px; height: 14px;"></i>
+          <span>Elemental — "Bad News & Worse News" Scene</span>
+        </div>
+        <div class="lesson-card__footer">
+          <span class="lesson-card__completion lesson-card__completion--pending" data-completed-status>
+            <i data-lucide="circle" style="width: 14px; height: 14px;"></i> Chưa hoàn thành
+          </span>
+          <span class="lesson-card__btn">Vào học <i data-lucide="arrow-right" style="width: 12px; height: 12px;"></i></span>
+        </div>
+      </a>
+
+      <!-- Lesson 5 -->
+      <a href="surprise-confidence-reactions.html" class="lesson-card" data-category="media" data-id="surprise-confidence-reactions">
+        <div class="lesson-card__meta">
+          <div class="lesson-card__badges">
+            <span class="lesson-card__badge lesson-card__badge--media">Từ phim</span>
+          </div>
+          <span class="lesson-card__level">B1–B2 · 45-60'</span>
+        </div>
+        <h3 class="lesson-card__title">Surprise, Confidence & Reactions</h3>
+        <p class="lesson-card__goal">
+          <strong>Mục tiêu:</strong> Cách diễn đạt sự ngạc nhiên, phản hồi tự tin và phản ứng tự nhiên trước những tình huống bất ngờ xảy ra — qua phim Despicable Me 4.
+        </p>
+        <div class="lesson-card__source">
+          <i data-lucide="clapperboard" style="width: 14px; height: 14px;"></i>
+          <span>Despicable Me 4 — "Edith vs. Karate Master"</span>
+        </div>
+        <div class="lesson-card__footer">
+          <span class="lesson-card__completion lesson-card__completion--pending" data-completed-status>
+            <i data-lucide="circle" style="width: 14px; height: 14px;"></i> Chưa hoàn thành
+          </span>
+          <span class="lesson-card__btn">Vào học <i data-lucide="arrow-right" style="width: 12px; height: 12px;"></i></span>
+        </div>
+      </a>
+
+      <!-- Empty state -->
+      <div class="empty-results" id="empty-results">
+        <i data-lucide="search-x"></i>
+        <h3>Không tìm thấy bài giảng phù hợp</h3>
+        <p>Thử tìm kiếm với từ khóa khác như "họp", "phim", "Anxiety"...</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 EnglishUp. Được xây dựng bởi Hoàng Minh Trí.</p>
+      <p class="footer__copy">Tiếng Anh không chỉ là ngôn ngữ — đó là chiếc vé mở cửa cho sự nghiệp của bạn.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/animations.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/quiz.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Lucide Icons
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    const searchInput = document.getElementById('lesson-search');
+    const filterButtons = document.querySelectorAll('.filter-tag');
+    const lessonCards = document.querySelectorAll('.lesson-card');
+    const emptyResults = document.getElementById('empty-results');
+
+    // 1. Progress Tracker LocalStorage Calculation
+    const totalLessonsCount = 5;
+    let completedLessonsCount = 0;
+    
+    lessonCards.forEach(card => {
+      const lessonId = card.getAttribute('data-id');
+      const isCompleted = localStorage.getItem('completed_' + lessonId) === 'true';
+      const statusContainer = card.querySelector('[data-completed-status]');
+      
+      if (isCompleted) {
+        completedLessonsCount++;
+        statusContainer.className = 'lesson-card__completion lesson-card__completion--done';
+        statusContainer.innerHTML = '<i data-lucide="check-circle" style="width: 14px; height: 14px;"></i> Đã hoàn thành';
+      }
+    });
+
+    // Update Progress Widget Values
+    document.getElementById('completed-count').textContent = completedLessonsCount;
+    const progressPercent = (completedLessonsCount / totalLessonsCount) * 100;
+    document.getElementById('completed-bar').style.width = `${progressPercent}%`;
+
+    // Re-trigger icon creation for updated elements
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    // 2. Search and Filtering Logic
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    function performSearchAndFilter() {
+      let visibleCount = 0;
+
+      lessonCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const title = card.querySelector('.lesson-card__title').textContent.toLowerCase();
+        const goal = card.querySelector('.lesson-card__goal').textContent.toLowerCase();
+        const source = card.querySelector('.lesson-card__source').textContent.toLowerCase();
+        
+        const matchesFilter = (currentFilter === 'all' || category === currentFilter);
+        const matchesSearch = title.includes(searchQuery) || goal.includes(searchQuery) || source.includes(searchQuery);
+
+        if (matchesFilter && matchesSearch) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Show/hide empty state
+      emptyResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    // Bind Search Input
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      performSearchAndFilter();
+    });
+
+    // Bind Filter Tags
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-selected', 'true');
+        
+        currentFilter = btn.getAttribute('data-filter');
+        performSearchAndFilter();
+      });
+    });
+
+    // 3. Evervault Mouse Move Glow Effect
+    lessonCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  });
+</script>
+</body>
+</html>
